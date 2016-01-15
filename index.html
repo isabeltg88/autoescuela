@@ -9,6 +9,7 @@
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" media="screen">
         <!--css personalizado-->
         <link href="css/navegacionPersonalizada.css" rel="stylesheet">
+        <link href="css/estilo.css" rel="stylesheet">
 	</head>
 	<body>
 
@@ -16,7 +17,7 @@
             <!--cabecera logo-->
             <div class="row">
                 <div class="col-sm-2 col-sm-offset-2">
-                    LOGO AQUI
+                    <img src="img/logo.png" class="img-responsive" alt="Logo"/>
                 </div>
                 <div class="col-sm-2 col-sm-offset-1 text-center">
                     <h1>El multazo</h1>
@@ -74,7 +75,7 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Clases <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Crear</a></li>
+                                    <li><a href="#">Alta</a></li>
                                     <hr>
                                     <li><a href="#">Listado</a></li>
                                 </ul>
@@ -82,7 +83,7 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Matriculas <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Crear</a></li>
+                                    <li><a href="#">Alta</a></li>
                                     <li><a href="#">Modificar</a></li>
                                     <li><a href="#">Baja</a></li>
                                     <hr>
@@ -95,8 +96,390 @@
                 </div>
             </div>
 
+            <!--formularios-->
+            <div class="row">
+
+                <!-- Profesores -->
+                <!-- Alta -->
+                <div class="col-sm-6 col-sm-offset-3">
+                    <h1 class="text-center">Alta Profesor</h1>
+                    <form name="frmProfesoresAlta" class="form-inline" role="form">
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">Nombre: </span>
+                            <input name="txtNombreAltaProf" type="text" class="form-control" placeholder="nombre"/>
+                        </div>
+                        &nbsp;
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">Apellidos: </span>
+                            <input name="txtApellidosAltaProf" type="text" class="form-control" placeholder="apellidos"/>
+                        </div>
+                        &nbsp;
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">Dni: </span>
+                            <input name="txtDniAltaProf" type="text" class="form-control" placeholder="dni"/>
+                        </div>
+                        &nbsp;
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">Email: </span>
+                            <input name="txtEmailAltaProf" type="text" class="form-control" placeholder="email"/>
+                        </div>
+                        &nbsp;
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">Direcci&oacute;n: </span>
+                            <input name="txtDireccionAltaProf" type="text" class="form-control" placeholder="direcci&oacute;n"/>
+                        </div>
+                        &nbsp;
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">Tel&eacute;fono: </span>
+                            <input name="txtTelefonoAltaProf" type="text" class="form-control" placeholder="tel&eacute;fono"/>
+                        </div>
+                        &nbsp;
+
+                        <div class="input-group col-xs-12">
+                            <input type="button" name="btnEnviarAltaProf" value="Alta" class="btn btn-primary col-xs-12"/>
+                        </div>
+                    </form>
+                </div>
+                <!-- Fin Alta -->
+                <!-- Modificar -->
+                <div class="col-sm-6 col-sm-offset-3">
+                    <h1 class="text-center">Modificar Profesor</h1>
+                    <form name="frmProfesoresModificar" class="form-inline" role="form">
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">Nombre: </span>
+                            <input name="txtNombreModificarProf" type="text" class="form-control" placeholder="nombre"/>
+                        </div>
+                        &nbsp;
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">Apellidos: </span>
+                            <input name="txtApellidosModificarProf" type="text" class="form-control" placeholder="apellidos"/>
+                        </div>
+                        &nbsp;
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">Dni: </span>
+                            <input name="txtDniModificarProf" type="text" class="form-control" placeholder="dni"/>
+                        </div>
+                        &nbsp;
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">Email: </span>
+                            <input name="txtEmailModificarProf" type="text" class="form-control" placeholder="email"/>
+                        </div>
+                        &nbsp;
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">Direcci&oacute;n: </span>
+                            <input name="txtDireccionModificarProf" type="text" class="form-control" placeholder="direcci&oacute;n"/>
+                        </div>
+                        &nbsp;
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">Tel&eacute;fono: </span>
+                            <input name="txtTelefonoModificarProf" type="text" class="form-control" placeholder="tel&eacute;fono"/>
+                        </div>
+                        &nbsp;
+
+                        <div class="input-group col-xs-12">
+                            <input type="button" name="btnEnviarModificarProf" value="Modificar" class="btn btn-primary col-xs-12"/>
+                        </div>
+                    </form>
+                </div>
+                <!-- Fin Modificar -->
+                <!-- Baja -->
+                <div class="col-sm-6 col-sm-offset-3">
+                    <h1 class="text-center">Baja Profesor</h1>
+                    <form name="frmProfesoresBaja" class="form-inline" role="form">
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">Nombre: </span>
+                            <input name="txtNombreBajaProf" type="text" class="form-control" placeholder="nombre"/>
+                        </div>
+                        &nbsp;
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">Apellidos: </span>
+                            <input name="txtApellidosBajaProf" type="text" class="form-control" placeholder="apellidos"/>
+                        </div>
+                        &nbsp;
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">Dni: </span>
+                            <input name="txtDniBajaProf" type="text" class="form-control" placeholder="dni"/>
+                        </div>
+                        &nbsp;
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">Email: </span>
+                            <input name="txtEmailBajaProf" type="text" class="form-control" placeholder="email"/>
+                        </div>
+                        &nbsp;
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">Direcci&oacute;n: </span>
+                            <input name="txtDireccionBajaProf" type="text" class="form-control" placeholder="direcci&oacute;n"/>
+                        </div>
+                        &nbsp;
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">Tel&eacute;fono: </span>
+                            <input name="txtTelefonoBajaProf" type="text" class="form-control" placeholder="tel&eacute;fono"/>
+                        </div>
+                        &nbsp;
+
+                        <div class="input-group col-xs-12">
+                            <input type="button" name="btnEnviarBajaProf" value="Baja" class="btn btn-primary col-xs-12"/>
+                        </div>
+                    </form>
+                </div>
+                <!-- Fin Baja -->
+                <!-- Fin Profesores -->
+
+                <!-- Clientes -->
+                <!-- Alta -->
+                <div class="col-sm-6 col-sm-offset-3">
+                    <h1 class="text-center">Alta Cliente</h1>
+                    <form name="frmClientesAlta" class="form-inline" role="form">
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">Nombre: </span>
+                            <input name="txtNombreAltaCli" type="text" class="form-control" placeholder="nombre"/>
+                        </div>
+                        &nbsp;
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">Apellidos: </span>
+                            <input name="txtApellidosAltaCli" type="text" class="form-control" placeholder="apellidos"/>
+                        </div>
+                        &nbsp;
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">Dni: </span>
+                            <input name="txtDniAltaCli" type="text" class="form-control" placeholder="dni"/>
+                        </div>
+                        &nbsp;
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">Email: </span>
+                            <input name="txtEmailAltaCli" type="text" class="form-control" placeholder="email"/>
+                        </div>
+                        &nbsp;
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">Direcci&oacute;n: </span>
+                            <input name="txtDireccionAltaCli" type="text" class="form-control" placeholder="direcci&oacute;n"/>
+                        </div>
+                        &nbsp;
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">Tel&eacute;fono: </span>
+                            <input name="txtTelefonoAltaCli" type="text" class="form-control" placeholder="tel&eacute;fono"/>
+                        </div>
+                        &nbsp;
+
+                        <div class="input-group col-xs-12">
+                            <input type="button" name="btnEnviarAltaCli" value="Alta" class="btn btn-primary col-xs-12"/>
+                        </div>
+                    </form>
+                </div>
+                <!-- Fin Alta -->
+                <!-- Modificar -->
+                <div class="col-sm-6 col-sm-offset-3">
+                    <h1 class="text-center">Modificar Cliente</h1>
+                    <form name="frmClientesModificar" class="form-inline" role="form">
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">Nombre: </span>
+                            <input name="txtNombreModificarCli" type="text" class="form-control" placeholder="nombre"/>
+                        </div>
+                        &nbsp;
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">Apellidos: </span>
+                            <input name="txtApellidosModificarCli" type="text" class="form-control" placeholder="apellidos"/>
+                        </div>
+                        &nbsp;
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">Dni: </span>
+                            <input name="txtDniModificarCli" type="text" class="form-control" placeholder="dni"/>
+                        </div>
+                        &nbsp;
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">Email: </span>
+                            <input name="txtEmailModificarCli" type="text" class="form-control" placeholder="email"/>
+                        </div>
+                        &nbsp;
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">Direcci&oacute;n: </span>
+                            <input name="txtDireccionModificarCli" type="text" class="form-control" placeholder="direcci&oacute;n"/>
+                        </div>
+                        &nbsp;
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">Tel&eacute;fono: </span>
+                            <input name="txtTelefonoModificarCli" type="text" class="form-control" placeholder="tel&eacute;fono"/>
+                        </div>
+                        &nbsp;
+
+                        <div class="input-group col-xs-12">
+                            <input type="button" name="btnEnviarModificarCli" value="Modificar" class="btn btn-primary col-xs-12"/>
+                        </div>
+                    </form>
+                </div>
+                <!-- Fin Modificar -->
+                <!-- Baja -->
+                <div class="col-sm-6 col-sm-offset-3">
+                    <h1 class="text-center">Baja Cliente</h1>
+                    <form name="frmClientesBaja" class="form-inline" role="form">
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">Nombre: </span>
+                            <input name="txtNombreBajaCli" type="text" class="form-control" placeholder="nombre"/>
+                        </div>
+                        &nbsp;
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">Apellidos: </span>
+                            <input name="txtApellidosBajaCli" type="text" class="form-control" placeholder="apellidos"/>
+                        </div>
+                        &nbsp;
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">Dni: </span>
+                            <input name="txtDniBajaCli" type="text" class="form-control" placeholder="dni"/>
+                        </div>
+                        &nbsp;
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">Email: </span>
+                            <input name="txtEmailBajaCli" type="text" class="form-control" placeholder="email"/>
+                        </div>
+                        &nbsp;
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">Direcci&oacute;n: </span>
+                            <input name="txtDireccionBajaCli" type="text" class="form-control" placeholder="direcci&oacute;n"/>
+                        </div>
+                        &nbsp;
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">Tel&eacute;fono: </span>
+                            <input name="txtTelefonoBajaCli" type="text" class="form-control" placeholder="tel&eacute;fono"/>
+                        </div>
+                        &nbsp;
+
+                        <div class="input-group col-xs-12">
+                            <input type="button" name="btnEnviarBajaCli" value="Baja" class="btn btn-primary col-xs-12"/>
+                        </div>
+                    </form>
+                </div>
+                <!-- Fin Baja -->
+                <!-- Fin Clientes -->
+
+                <!-- Vehiculos -->
+                <!-- Alta -->
+                <div class="col-sm-6 col-sm-offset-3">
+                    <h1 class="text-center">Alta Veh&iacute;culo</h1>
+                    <form name="frmVehiculosAlta" class="form-inline" role="form">
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">Matr&iacute;cula: </span>
+                            <input name="txtMatriculaAltaVehi" type="text" class="form-control" placeholder="matr&iacute;cula"/>
+                        </div>
+                        &nbsp;
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">Marca: </span>
+                            <input name="txtMarcaAltaVehi" type="text" class="form-control" placeholder="marca"/>
+                        </div>
+                        &nbsp;
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">Modelo: </span>
+                            <input name="txtModeloAltaVehi" type="text" class="form-control" placeholder="modelo"/>
+                        </div>
+                        &nbsp;
+                        <!-- todo radio para elegir el tipo de vehiculo -->
+                        &nbsp;
+                        <div id="altaVehiculoMoto">
+                            <div class="input-group col-xs-12">
+                                <span class="input-group-addon">Cilindrada: </span>
+                                <input name="txtCilindradaAltaVehi" type="text" class="form-control" placeholder="cilindrada"/>
+                            </div>
+                            &nbsp;
+                        </div>
+                        <div id="altaVehiculoCamion">
+                            <div class="input-group col-xs-12">
+                                <span class="input-group-addon">Categor&iacute;a: </span>
+                                <input name="txtCategoriaAltaVehi" type="text" class="form-control" placeholder="categor&iacute;a"/>
+                            </div>
+                            &nbsp;
+                        </div>
+                        <div id="altaVehiculoCoche">
+                            <div class="input-group col-xs-12">
+                                <span class="input-group-addon">Motor: </span>
+                                <input name="txtMotorAltaVehi" type="text" class="form-control" placeholder="motor"/>
+                            </div>
+                            &nbsp;
+                            <div class="input-group col-xs-12">
+                                <span class="input-group-addon">Potencia: </span>
+                                <input name="txtPotenciaAltaVehi" type="text" class="form-control" placeholder="potencia"/>
+                            </div>
+                            &nbsp;
+                        </div>
+
+                        <div class="input-group col-xs-12">
+                            <input type="button" name="btnEnviarAltaVehi" value="Alta" class="btn btn-primary col-xs-12"/>
+                        </div>
+                    </form>
+                </div>
+                <!-- Fin Alta -->
+                <!-- Modificar -->
+
+                <!-- Fin Modificar -->
+                <!-- Baja -->
+
+                <!-- Fin Baja -->
+                <!-- Fin Vehiculos -->
+
+                <!-- Clases -->
+                <!-- Alta -->
+                <div class="col-sm-6 col-sm-offset-3">
+                    <h1 class="text-center">Alta Clase</h1>
+                    <form name="frmClaseAlta" class="form-inline" role="form">
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">Duraci&oacute;n: </span>
+                            <input name="txtDuracionAltaCla" type="text" class="form-control" placeholder="duraci&oacute;n"/>
+                        </div>
+                        &nbsp;
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">Fecha: </span>
+                            <input name="txtFechaAltaCla" type="text" class="form-control" placeholder="dd/mm/aa"/>
+                        </div>
+                        &nbsp;
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">Hora: </span>
+                            <input name="txtHoraAltaCla" type="text" class="form-control" placeholder="hora"/>
+                        </div>
+                        &nbsp;
+                        <!-- todo radios para seleccionar el tipo de clase -->
+                        &nbsp;
+                        <div id="altaClasePractica">
+                            <div class="input-group col-xs-12">
+                                <span class="input-group-addon">Tarifa/h: </span>
+                                <input name="txtTarifaAltaCla" type="text" class="form-control" placeholder="tarifa/hora"/>
+                            </div>
+                            &nbsp;
+                        </div>
+                        <div id="altaClaseTeorica">
+                            <div class="input-group col-xs-12">
+                                <span class="input-group-addon">Aforo: </span>
+                                <input name="txtAforoAltaCla" type="text" class="form-control" placeholder="aforo"/>
+                            </div>
+                            &nbsp;
+                        </div>
+
+                        <div class="input-group col-xs-12">
+                            <input type="button" name="btnEnviarAltaCla" value="Alta" class="btn btn-primary col-xs-12"/>
+                        </div>
+                    </form>
+                </div>
+                <!-- Fin Alta -->
+                <!-- Fin Clases -->
+
+                <!-- Matriculas -->
+                <!-- Alta -->
+
+                <!-- Fin Alta -->
+                <!-- Modificacion -->
+
+                <!-- Fin Modificacion -->
+                <!-- Baja -->
+
+                <!-- Fin Baja -->
+                <!-- Fin Matriculas -->
+
+                <!-- ------------------------------------------- -->
+                <!-- Listados -->
 
 
+            </div>
+
+            <div class="row" id="pie">
+                <p class="text-center"><b>Hecho por:</b> <i>Sergio L&oacute;pez Casta&ntilde;o</i> e <i>Isabel Terrero G&oacute;mez</i></p>
+            </div>
         </div>
 
 
