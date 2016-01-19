@@ -85,6 +85,15 @@ function ocultarTodosFormularios(){
     }
 }
 
+function ocultarTodosFormularios2(){ //todo ¿mejor?
+    var oCapasFormularios=document.querySelectorAll(".capaVisible");//capas de los formularios visibles
+
+    for(var i=0;i<oCapasFormularios.length;i++){
+        oCapasFormularios[i].classList.remove("capaVisible");
+        oCapasFormularios[i].classList.add("oculto");
+    }
+}
+
 //------Funciones mostrarProfesor--------
 function mostrarAltaProfesor(){
     ocultarTodosFormularios();
@@ -258,3 +267,44 @@ function mostrarListadoMatricula(){
 
 }
 //------Fin Funciones mostrarMatricula--------
+
+
+//--------------------------------------------------------
+//----- Funciones limpiar campos -------------------------
+//--------------------------------------------------------
+
+function limpiarCampos(oCapa){
+    //limpia los campos de texto
+    var oInputText = oCapa.querySelectorAll("form input[type=text]");
+
+    if(oInputText!=null){
+        for(var i=0;i<oInputText.length;i++){
+            oInputText[i].value="";
+        }
+    }
+
+
+    //marca el primer radio
+    var oRadio = oCapa.querySelectorAll("form input[type=radio]");
+
+    if(oRadio!=null){
+        for(var i=0;i<oRadio.length;i++){
+            oRadio[i].setAttribute("checked","");
+        }
+        oRadio[i].setAttribute("checked","checked");
+    }
+
+}
+
+
+//--------------------------------------------------------
+//----- Funciones validar campos -------------------------
+//--------------------------------------------------------
+
+
+
+//--------------------------------------------------------
+//----- Funciones auxiliares -----------------------------
+//--------------------------------------------------------
+
+
