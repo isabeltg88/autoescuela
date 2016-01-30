@@ -425,120 +425,6 @@ Teorica.prototype.fila= function () {
 
     return fila;
 }
-//objeto Examen------------------------------------------------------
-
-function Examen(dFecha,sHora,sLugar,bAptitud){
-    this.fecha=dFecha;
-    this.hora=sHora;
-    this.lugar=sLugar;
-    this.aptitud=bAptitud;
-}
-
-//métodos
-Examen.prototype.fila= function () {
-    var fila = document.createElement("tr");
-    var celda = document.createElement("td");
-    var oTexto=document.createTextNode(this.fecha);
-    celda.appendChild(oTexto);
-    fila.appendChild(celda);
-    var celda2 = document.createElement("td");
-    var oTexto2=document.createTextNode(this.hora);
-    celda2.appendChild(oTexto2);
-    fila.appendChild(celda2);
-    var celda3 = document.createElement("td");
-    var oTexto3=document.createTextNode(this.lugar);
-    celda3.appendChild(oTexto3);
-    fila.appendChild(celda3);
-    var celda4 = document.createElement("td");
-    var oTexto4=document.createTextNode(this.aptitud);
-    celda4.appendChild(oTexto4);
-    fila.appendChild(celda4);
-
-
-    return fila;
-}
-//objeto Teorico------------------------------------------------------
-//hereda de Examen
-function Teorico(dFecha,sHora,sLugar,bAptitud,iNumErrores){
-    Examen.apply(this,[dFecha,sHora,sLugar,bAptitud]);
-    this.numErrores=iNumErrores;
-}
-//herencia
-Teorico.prototype = Object.create(Examen.prototype);
-Teorico.prototype.constructor = Teorico;
-
-//métodos
-
-Teorico.prototype.fila= function () {
-    var fila = document.createElement("tr");
-    var celda = document.createElement("td");
-    var oTexto=document.createTextNode(this.fecha);
-    celda.appendChild(oTexto);
-    fila.appendChild(celda);
-    var celda2 = document.createElement("td");
-    var oTexto2=document.createTextNode(this.hora);
-    celda2.appendChild(oTexto2);
-    fila.appendChild(celda2);
-    var celda3 = document.createElement("td");
-    var oTexto3=document.createTextNode(this.lugar);
-    celda3.appendChild(oTexto3);
-    fila.appendChild(celda3);
-    var celda4 = document.createElement("td");
-    var oTexto4=document.createTextNode(this.aptitud);
-    celda4.appendChild(oTexto4);
-    fila.appendChild(celda4);
-    var celda5 = document.createElement("td");
-    var oTexto5=document.createTextNode(this.numErrores);
-    celda5.appendChild(oTexto5);
-    fila.appendChild(celda5);
-
-
-    return fila;
-}
-
-//objeto Practico------------------------------------------------------
-//hereda de Examen
-function Practico(dFecha,sHora,sLugar,bAptitud,iFallosGraves,iFallosLeves){
-    Examen.apply(this,[dFecha,sHora,sLugar,bAptitud]);
-    this.fallosGraves=iFallosGraves;
-    this.fallosLeves=iFallosLeves;
-}
-//herencia
-Practico.prototype = Object.create(Examen.prototype);
-Practico.prototype.constructor = Practico;
-
-//métodos
-Practico.prototype.fila= function () {
-    var fila = document.createElement("tr");
-    var celda = document.createElement("td");
-    var oTexto=document.createTextNode(this.fecha);
-    celda.appendChild(oTexto);
-    fila.appendChild(celda);
-    var celda2 = document.createElement("td");
-    var oTexto2=document.createTextNode(this.hora);
-    celda2.appendChild(oTexto2);
-    fila.appendChild(celda2);
-    var celda3 = document.createElement("td");
-    var oTexto3=document.createTextNode(this.lugar);
-    celda3.appendChild(oTexto3);
-    fila.appendChild(celda3);
-    var celda4 = document.createElement("td");
-    var oTexto4=document.createTextNode(this.aptitud);
-    celda4.appendChild(oTexto4);
-    fila.appendChild(celda4);
-    var celda5 = document.createElement("td");
-    var oTexto5=document.createTextNode(this.fallosGraves);
-    celda5.appendChild(oTexto5);
-    fila.appendChild(celda5);
-    var celda6 = document.createElement("td");
-    var oTexto6=document.createTextNode(this.fallosLeves);
-    celda6.appendChild(oTexto6);
-    fila.appendChild(celda6);
-
-
-    return fila;
-}
-
 //objeto Autoescuela------------------------------------------------------
 
 function Autoescuela(sCif,sDireccion,sNombre,sTelefono){
@@ -548,7 +434,8 @@ function Autoescuela(sCif,sDireccion,sNombre,sTelefono){
     this.telefono=sTelefono;
     this.ofertas=new Oferta();
     this.matriculas=new Matricula();
-    this.personas=new Persona();
+    this.clientes=new Cliente();
+    this.profesores=new Profesor();
     this.clases=new Clases();
     this.vehiculos=new Vehiculo();
 }
@@ -556,7 +443,27 @@ function Autoescuela(sCif,sDireccion,sNombre,sTelefono){
 //métodos
 
 Autoescuela.prototype.altaProfesor= function (profesor) {
-    this.personas.push(profesor);
+    this.profesores.push(profesor);
+}
+Autoescuela.prototype.altaCliente= function (cliente){
+    this.clientes.push(cliente);
+}
+Autoescuela.prototype.modificaProfesor=function(profesor){
+    //busco al profesor con el mismo dni y lo reemplazo
+    for(var i=0;i<this.profesores.length;i++){
+        if(this.profesores[i].dni==profesor.dni){
+            this.profesores[i]=profesor;
+        }
+    }
+}
+
+Autoescuela.prototype.modificaCliente=function(cliente){
+    //busco al cliente con el mismo dni y lo reemplazo
+    for(var i=0;i<this.clientes.length;i++){
+        if(this.clientes[i].dni==cliente.dni){
+            this.clientes[i]=cliente;
+        }
+    }
 }
 
 
