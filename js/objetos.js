@@ -445,9 +445,6 @@ function Autoescuela(sCif,sDireccion,sNombre,sTelefono){
 Autoescuela.prototype.altaProfesor= function (profesor) {
     this.profesores.push(profesor);
 }
-Autoescuela.prototype.altaCliente= function (cliente){
-    this.clientes.push(cliente);
-}
 Autoescuela.prototype.modificaProfesor=function(profesor){
     //busco al profesor con el mismo dni y lo reemplazo
     for(var i=0;i<this.profesores.length;i++){
@@ -456,6 +453,11 @@ Autoescuela.prototype.modificaProfesor=function(profesor){
         }
     }
 }
+
+Autoescuela.prototype.altaCliente= function (cliente){
+    this.clientes.push(cliente);
+}
+
 
 Autoescuela.prototype.modificaCliente=function(cliente){
     //busco al cliente con el mismo dni y lo reemplazo
@@ -466,4 +468,30 @@ Autoescuela.prototype.modificaCliente=function(cliente){
     }
 }
 
+Autoescuela.prototype.altaVehiculo=function(vehiculo){
+    this.vehiculos.push(vehiculo);
+}
+Autoescuela.prototype.modificaVehiculo=function(vehiculo){
+    //busco al vehiculo con la misma matricula y lo reemplazo
+    for(var i=0;i<this.vehiculos.length;i++){
+        if(this.vehiculos[i].matricula==vehiculo.matricula){
+            this.vehiculos[i]=vehiculo;
+        }
+    }
+}
 
+Autoescuela.prototype.altaClase=function(Clase){
+    this.clases.push(clase);
+}
+
+Autoescuela.prototype.altaMatricula=function(matricula){
+    this.matriculas.push(matricula);
+}
+Autoescuela.prototype.modificaMatricula=function(matricula){
+    //busco la matricula y la reemplazo
+    for(var i=0;i<this.matriculas.length;i++){
+        if(this.matriculas[i].identificador==matricula.identificador){
+            this.matriculas[i]=matricula;
+        }
+    }
+}
