@@ -209,8 +209,16 @@ function Persona(sApellidos,sDireccion,sDni,sEmail,sNombre,sTelefono){
 
 //métodos
 Persona.prototype.fila= function () {
-     
+
     var fila = document.createElement("tr");
+    var celda3 = document.createElement("td");
+    var oTexto3=document.createTextNode(this.dni);
+    celda3.appendChild(oTexto3);
+    fila.appendChild(celda3);
+    var celda5 = document.createElement("td");
+    var oTexto5=document.createTextNode(this.nombre);
+    celda5.appendChild(oTexto5);
+    fila.appendChild(celda5);
     var celda = document.createElement("td");
     var oTexto=document.createTextNode(this.apellidos);
     celda.appendChild(oTexto);
@@ -219,18 +227,12 @@ Persona.prototype.fila= function () {
     var oTexto2=document.createTextNode(this.direccion);
     celda2.appendChild(oTexto2);
     fila.appendChild(celda2);
-    var celda3 = document.createElement("td");
-    var oTexto3=document.createTextNode(this.dni);
-    celda3.appendChild(oTexto3);
-    fila.appendChild(celda3);
+
     var celda4 = document.createElement("td");
     var oTexto4=document.createTextNode(this.email);
     celda4.appendChild(oTexto4);
     fila.appendChild(celda4);
-    var celda5 = document.createElement("td");
-    var oTexto5=document.createTextNode(this.nombre);
-    celda5.appendChild(oTexto5);
-    fila.appendChild(celda5);
+
     var celda6 = document.createElement("td");
     var oTexto6=document.createTextNode(this.telefono);
     celda6.appendChild(oTexto6);
@@ -251,8 +253,20 @@ Profesor.prototype.constructor = Profesor;
 
 //métodos
 Profesor.prototype.fila= function () {
-     
+
     var fila = document.createElement("tr");
+    var celda7 = document.createElement("td");
+    var oTexto7=document.createTextNode(this.id);
+    celda7.appendChild(oTexto7);
+    fila.appendChild(celda7);
+    var celda3 = document.createElement("td");
+    var oTexto3=document.createTextNode(this.dni);
+    celda3.appendChild(oTexto3);
+    fila.appendChild(celda3);
+    var celda5 = document.createElement("td");
+    var oTexto5=document.createTextNode(this.nombre);
+    celda5.appendChild(oTexto5);
+    fila.appendChild(celda5);
     var celda = document.createElement("td");
     var oTexto=document.createTextNode(this.apellidos);
     celda.appendChild(oTexto);
@@ -261,26 +275,17 @@ Profesor.prototype.fila= function () {
     var oTexto2=document.createTextNode(this.direccion);
     celda2.appendChild(oTexto2);
     fila.appendChild(celda2);
-    var celda3 = document.createElement("td");
-    var oTexto3=document.createTextNode(this.dni);
-    celda3.appendChild(oTexto3);
-    fila.appendChild(celda3);
+
     var celda4 = document.createElement("td");
     var oTexto4=document.createTextNode(this.email);
     celda4.appendChild(oTexto4);
     fila.appendChild(celda4);
-    var celda5 = document.createElement("td");
-    var oTexto5=document.createTextNode(this.nombre);
-    celda5.appendChild(oTexto5);
-    fila.appendChild(celda5);
+
     var celda6 = document.createElement("td");
     var oTexto6=document.createTextNode(this.telefono);
     celda6.appendChild(oTexto6);
     fila.appendChild(celda6);
-    var celda7 = document.createElement("td");
-    var oTexto7=document.createTextNode(this.id);
-    celd7.appendChild(oTexto7);
-    fila.appendChild(celda7);
+
 
     return fila;
 }
