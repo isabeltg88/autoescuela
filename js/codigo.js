@@ -1,7 +1,6 @@
 
 //Funcion para cargar el archivo XML
-function loadXMLDoc(filename)
-{
+function loadXMLDoc(filename) {
     if (window.XMLHttpRequest)
     {
         xhttp=new XMLHttpRequest();
@@ -23,8 +22,6 @@ window.addEventListener("load",inicio,false);
 
 function inicio(){
     var oLI=document.querySelectorAll(".dropdown ul li");//Todos los li de la barra de navegacion (18)
-
-    //todo no añade los eventos, pero desde la consola del navegador si los añade
 
     //Menu Alta Profesor
     oLI[0].addEventListener("click",mostrarAltaProfesor,false);
@@ -97,33 +94,33 @@ function ocultarTodosFormularios2(){ //todo ¿mejor?
 //------Funciones mostrarProfesor--------
 function mostrarAltaProfesor(){
     ocultarTodosFormularios();
-    //metodo que limpia todos los campos
 
     var oCapa = document.getElementById("altaProfesor");
+    limpiarCampos(oCapa);
     oCapa.classList.remove("oculto");
     oCapa.classList.add("capaVisible");
 }
 function mostrarModificarProfesor(){
     ocultarTodosFormularios();
-    //metodo que limpia todos los campos
 
     var oCapa = document.getElementById("modificarProfesor");
+    limpiarCampos(oCapa);
     oCapa.classList.remove("oculto");
     oCapa.classList.add("capaVisible");
 }
 function mostrarBajaProfesor(){
     ocultarTodosFormularios();
-    //metodo que limpia todos los campos
 
     var oCapa = document.getElementById("bajaProfesor");
+    limpiarCampos(oCapa);
     oCapa.classList.remove("oculto");
     oCapa.classList.add("capaVisible");
 }
 function mostrarListadoProfesor(){
     ocultarTodosFormularios();
-    //metodo que limpia todos los campos
 
     var oCapa = document.getElementById("listadosTablas");
+    limpiarCampos(oCapa);
     oCapa.classList.remove("oculto");
     oCapa.classList.add("capaVisible");
 
@@ -135,33 +132,33 @@ function mostrarListadoProfesor(){
 //------Funciones mostrarCliente--------
 function mostrarAltaCliente(){
     ocultarTodosFormularios();
-    //metodo que limpia todos los campos
 
     var oCapa = document.getElementById("altaCliente");
+    limpiarCampos(oCapa);
     oCapa.classList.remove("oculto");
     oCapa.classList.add("capaVisible");
 }
 function mostrarModificarCliente(){
     ocultarTodosFormularios();
-    //metodo que limpia todos los campos
 
     var oCapa = document.getElementById("modificarCliente");
+    limpiarCampos(oCapa);
     oCapa.classList.remove("oculto");
     oCapa.classList.add("capaVisible");
 }
 function mostrarBajaCliente(){
     ocultarTodosFormularios();
-    //metodo que limpia todos los campos
 
     var oCapa = document.getElementById("bajaCliente");
+    limpiarCampos(oCapa);
     oCapa.classList.remove("oculto");
     oCapa.classList.add("capaVisible");
 }
 function mostrarListadoCliente(){
     ocultarTodosFormularios();
-    //metodo que limpia todos los campos
 
     var oCapa = document.getElementById("listadosTablas");
+    limpiarCampos(oCapa);
     oCapa.classList.remove("oculto");
     oCapa.classList.add("capaVisible");
 
@@ -173,33 +170,33 @@ function mostrarListadoCliente(){
 //------Funciones mostrarVehiculo--------
 function mostrarAltaVehiculo(){
     ocultarTodosFormularios();
-    //metodo que limpia todos los campos
 
     var oCapa = document.getElementById("altaVehiculo");
+    limpiarCampos(oCapa);
     oCapa.classList.remove("oculto");
     oCapa.classList.add("capaVisible");
 }
 function mostrarModificarVehiculo(){
     ocultarTodosFormularios();
-    //metodo que limpia todos los campos
 
     var oCapa = document.getElementById("modificarVehiculo");
+    limpiarCampos(oCapa);
     oCapa.classList.remove("oculto");
     oCapa.classList.add("capaVisible");
 }
 function mostrarBajaVehiculo(){
     ocultarTodosFormularios();
-    //metodo que limpia todos los campos
 
     var oCapa = document.getElementById("bajaVehiculo");
+    limpiarCampos(oCapa);
     oCapa.classList.remove("oculto");
     oCapa.classList.add("capaVisible");
 }
 function mostrarListadoVehiculo(){
     ocultarTodosFormularios();
-    //metodo que limpia todos los campos
 
     var oCapa = document.getElementById("listadosTablas");
+    limpiarCampos(oCapa);
     oCapa.classList.remove("oculto");
     oCapa.classList.add("capaVisible");
 
@@ -211,17 +208,17 @@ function mostrarListadoVehiculo(){
 //------Funciones mostrarClase--------
 function mostrarAltaClase(){
     ocultarTodosFormularios();
-    //metodo que limpia todos los campos
 
     var oCapa = document.getElementById("altaClase");
+    limpiarCampos(oCapa);
     oCapa.classList.remove("oculto");
     oCapa.classList.add("capaVisible");
 }
 function mostrarListadoClase(){
     ocultarTodosFormularios();
-    //metodo que limpia todos los campos
 
     var oCapa = document.getElementById("listadosTablas");
+    limpiarCampos(oCapa);
     oCapa.classList.remove("oculto");
     oCapa.classList.add("capaVisible");
 
@@ -233,33 +230,35 @@ function mostrarListadoClase(){
 //------Funciones mostrarMatricula--------
 function mostrarAltaMatricula(){
     ocultarTodosFormularios();
-    //metodo que limpia todos los campos
 
     //var oCapa = document.getElementById("altaMatricula");
+    //limpiarCampos(oCapa);
     //oCapa.classList.remove("oculto");
     //oCapa.classList.add("capaVisible");
 }
 function mostrarModificarMatricula(){
     ocultarTodosFormularios();
-    //metodo que limpia todos los campos
 
     //var oCapa = document.getElementById("modificarMatricula");
+    //limpiarCampos(oCapa);
     //oCapa.classList.remove("oculto");
     //oCapa.classList.add("capaVisible");
 }
 function mostrarBajaMatricula(){
     ocultarTodosFormularios();
-    //metodo que limpia todos los campos
 
     //var oCapa = document.getElementById("bajaMatricula");
+    //limpiarCampos(oCapa);
     //oCapa.classList.remove("oculto");
     //oCapa.classList.add("capaVisible");
 }
 function mostrarListadoMatricula(){
     ocultarTodosFormularios();
-    //metodo que limpia todos los campos
 
     var oCapa = document.getElementById("listadosTablas");
+
+    limpiarCampos(oCapa);
+
     oCapa.classList.remove("oculto");
     oCapa.classList.add("capaVisible");
 
@@ -287,11 +286,26 @@ function limpiarCampos(oCapa){
     //marca el primer radio
     var oRadio = oCapa.querySelectorAll("form input[type=radio]");
 
-    if(oRadio!=null){
-        for(var i=0;i<oRadio.length;i++){
-            oRadio[i].setAttribute("checked","");
+    if(oRadio.length>0){
+        oRadio[0].checked=true;
+    }
+
+    //marcar el primer select
+    var oSelect = oCapa.querySelectorAll("form select");
+
+    if(oSelect.length>0){
+        for(var i=0;i<oSelect.length;i++){
+            oSelect[i].value=0;
         }
-        oRadio[i].setAttribute("checked","checked");
+    }
+
+    //limpia el color amarillo
+    var oCamposAmarillo = oCapa.querySelectorAll(".error");
+
+    if(oCamposAmarillo!=null){
+        for(var i=0;i<oCamposAmarillo.length;i++){
+            oCamposAmarillo[i].classList.remove("error");
+        }
     }
 
 }
@@ -301,11 +315,193 @@ function limpiarCampos(oCapa){
 //----- Funciones validar campos -------------------------
 //--------------------------------------------------------
 
+function validarPersona(oCapa){
+    var bValido = true;
+    var sErrores = "";  //se almacenan aqui todos los errores
+    var oInputs=oCapa.querySelectorAll("input[type=text]");
 
+    //Validaciones
+
+    //0-> nombre
+    //1-> apellidos
+    //2-> dni
+    //3-> email
+    //4-> direccion
+    //5-> telefono
+
+    //Campo nombre
+    var sNombre = oInputs[0].value.trim(); //sin espacios por delante ni por detras
+    //Campo corregido con trim
+    oInputs[0].value=oInputs[0].value.trim();
+
+    var oExpReg = /^[\w\s]{3,30}$/;
+
+    if(oExpReg.test(sNombre) == false){
+        if(bValido){  //Si es el primero en fallar,coge el foco
+            bValido = false;
+            //Este camo obtiene el foco
+            oInputs[0].focus();
+        }
+
+        sErrores += "Nombre incorrecto\n";
+
+        //Marcar error
+        oInputs[0].classList.add("error");
+    }else{
+        //Desmarcar el error
+        oInputs[0].classList.remove("error");
+    }
+
+
+    //Campo apellidos
+    var sApellidos = oInputs[1].value.trim(); //sin espacios por delante ni por detras
+    //Campo corregido con trim
+    oInputs[1].value=oInputs[1].value.trim();
+
+    var oExpReg2 = /^[\w\s]{3,50}$/;
+
+    if(oExpReg2.test(sApellidos) == false){
+        if(bValido){  //Si es el primero en fallar,coge el foco
+            bValido = false;
+            //Este camo obtiene el foco
+            oInputs[1].focus();
+        }
+
+        sErrores += "Apellidos incorrectos\n";
+
+        //Marcar error
+        oInputs[1].classList.add("error");
+    }else{
+        //Desmarcar el error
+        oInputs[1].classList.remove("error");
+    }
+
+
+    //Campo dni
+    var sDni = oInputs[2].value.trim(); //sin espacios por delante ni por detras
+    //Campo corregido con trim
+    oInputs[2].value=oInputs[2].value.trim();
+
+    var oExpReg3 = /^(X(-|\.)?0?\d{7}(-|\.)?[A-Z]|[A-Z](-|\.)?\d{7}(-|\.)? [0-9A-Z]|\d{8}(-|\.)?[A-Z])$/;
+
+    if(oExpReg3.test(sDni) == false){
+        if(bValido){  //Si es el primero en fallar,coge el foco
+            bValido = false;
+            //Este camo obtiene el foco
+            oInputs[2].focus();
+        }
+
+        sErrores += "DNI incorrectos\n";
+
+        //Marcar error
+        oInputs[2].classList.add("error");
+    }else{
+        //Desmarcar el error
+        oInputs[2].classList.remove("error");
+    }
+
+
+
+    //Campo email
+    var sEmail = oInputs[3].value.trim(); //sin espacios por delante ni por detras
+    //Campo corregido con trim
+    oInputs[3].value=oInputs[3].value.trim();
+
+    var oExpReg4 = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/;
+
+    if(oExpReg4.test(sEmail) == false){
+        if(bValido){  //Si es el primero en fallar,coge el foco
+            bValido = false;
+            //Este camo obtiene el foco
+            oInputs[3].focus();
+        }
+
+        sErrores += "Email incorrecto\n";
+
+        //Marcar error
+        oInputs[3].classList.add("error");
+    }else{
+        //Desmarcar el error
+        oInputs[3].classList.remove("error");
+    }
+
+
+    //Campo direccion
+    var sDireccion = oInputs[4].value.trim(); //sin espacios por delante ni por detras
+    //Campo corregido con trim
+    oInputs[4].value=oInputs[4].value.trim();
+
+    var oExpReg5 = /^[\w\s]{3,60}$/;
+
+    if(oExpReg5.test(sDireccion) == false){
+        if(bValido){  //Si es el primero en fallar,coge el foco
+            bValido = false;
+            //Este camo obtiene el foco
+            oInputs[4].focus();
+        }
+
+        sErrores += "Direccion incorrecta\n";
+
+        //Marcar error
+        oInputs[4].classList.add("error");
+    }else{
+        //Desmarcar el error
+        oInputs[4].classList.remove("error");
+    }
+
+
+    //Campo telefono
+    var sTelefono = oInputs[5].value.trim(); //sin espacios por delante ni por detras
+    //Campo corregido con trim
+    oInputs[5].value=oInputs[5].value.trim();
+
+    var oExpReg6 = /^\d{9}$/;
+
+    if(oExpReg6.test(sTelefono) == false){
+        if(bValido){  //Si es el primero en fallar,coge el foco
+            bValido = false;
+            //Este camo obtiene el foco
+            oInputs[5].focus();
+        }
+
+        sErrores += "Telefono incorrecto\n";
+
+        //Marcar error
+        oInputs[5].classList.add("error");
+    }else{
+        //Desmarcar el error
+        oInputs[5].classList.remove("error");
+    }
+
+
+
+    //Resultado
+    if(bValido == false){
+        //Mostrar errores
+        alert(sErrores);
+    }
+
+    return bValido;
+}
+
+
+function validarVehiculo(oCapa){
+
+}
+
+function validarClase(){
+
+}
+
+function validarMatricula(oCapa){
+
+}
 
 //--------------------------------------------------------
 //----- Funciones auxiliares -----------------------------
 //--------------------------------------------------------
+
+
 
 
 //-------funcion listado de profesores--------
