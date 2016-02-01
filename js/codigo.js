@@ -1,4 +1,4 @@
-
+﻿
 //Funcion para cargar el archivo XML
 function loadXMLDoc(filename)
 {
@@ -355,3 +355,5 @@ function tablaClientes(){
 ///-------------------objeto autoescuela
 
 var autoescuela=new Autoescuela("1111","calle","el multazo","111111");
+
+
