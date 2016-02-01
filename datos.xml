@@ -1,0 +1,49 @@
+<autoescuela>
+    <cif>1111</cif>
+    <direccion>calle</direccion>
+    <nombre>el multazo</nombre>
+    <telefono>111111</telefono>
+    <vehiculos>
+        <vehiculo>
+
+        </vehiculo>
+        <vehiculo>
+
+        </vehiculo>
+        <vehiculo>
+
+        </vehiculo>
+    </vehiculos>
+    <profesores>
+        <profesor>
+
+        </profesor>
+        <profesor>
+
+        </profesor>
+    </profesores>
+    <clientes>
+        <cliente>
+
+        </cliente>
+        <cliente>
+
+        </cliente>
+    </clientes>
+    <matriculas>
+        <matricula>
+
+        </matricula>
+        <matricula>
+
+        </matricula>
+    </matriculas>
+    <clases>
+        <clase>
+
+        </clase>
+        <clase>
+
+        </clase>
+    </clases>
+</autoescuela>

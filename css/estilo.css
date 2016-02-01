@@ -19,6 +19,12 @@
 }
 /* Fin Ocultar formularios */
 
+/* formularios */
+.error{
+    background-color: yellow;
+}
+/* formularios*/
+
 /* pie */
 #pie{
     margin-top: 30px ;
