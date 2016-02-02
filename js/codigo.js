@@ -178,6 +178,7 @@ function mostrarListadoCliente(){
     oCapa.classList.add("capaVisible");
 
     //todo mostrar la tabla de clientes
+    oCapa.appendChild(tablaClientes());
 
 }
 //------Fin Funciones mostrarCliente--------
@@ -210,6 +211,7 @@ function mostrarListadoVehiculo(){
     oCapa.classList.add("capaVisible");
 
     //todo mostrar la tabla de vehiculos
+    oCapa.appendChild(tablaVehiculos());
 
 }
 //------Funciones mostrarVehiculo--------
@@ -232,6 +234,7 @@ function mostrarListadoClase(){
     oCapa.classList.add("capaVisible");
 
     //todo mostrar la tabla de clases
+    oCapa.appendChild(tablaClases());
 
 }
 //------Funciones mostrarClase--------
@@ -266,6 +269,7 @@ function mostrarListadoMatricula(){
     oCapa.classList.add("capaVisible");
 
     //todo mostrar la tabla de matricula
+    oCapa.appendChild(tablaMatriculas());
 
 }
 //------Fin Funciones mostrarMatricula--------
@@ -701,32 +705,32 @@ function tablaProfesores(){
     var oTabla=document.createElement("Table");
 
     var fila = document.createElement("tr");
-    var celda = document.createElement("td");
+    var celda = document.createElement("th");
     var oTexto=document.createTextNode("Id");
     celda.appendChild(oTexto);
     fila.appendChild(celda);
-    var celda2 = document.createElement("td");
-    var oTexto2=document.createTextNode("dni");
+    var celda2 = document.createElement("th");
+    var oTexto2=document.createTextNode("Dni");
     celda2.appendChild(oTexto2);
     fila.appendChild(celda2);
-    var celda3 = document.createElement("td");
-    var oTexto3=document.createTextNode("nombre");
+    var celda3 = document.createElement("th");
+    var oTexto3=document.createTextNode("Nombre");
     celda3.appendChild(oTexto3);
     fila.appendChild(celda3);
-    var celda4 = document.createElement("td");
-    var oTexto4=document.createTextNode("apellidos");
+    var celda4 = document.createElement("th");
+    var oTexto4=document.createTextNode("Apellidos");
     celda4.appendChild(oTexto4);
     fila.appendChild(celda4);
-    var celda5 = document.createElement("td");
-    var oTexto5=document.createTextNode("direccion");
+    var celda5 = document.createElement("th");
+    var oTexto5=document.createTextNode("Direccion");
     celda5.appendChild(oTexto5);
     fila.appendChild(celda5);
-    var celda6 = document.createElement("td");
-    var oTexto6=document.createTextNode("email");
+    var celda6 = document.createElement("th");
+    var oTexto6=document.createTextNode("Email");
     celda6.appendChild(oTexto6);
     fila.appendChild(celda6);
-    var celda7 = document.createElement("td");
-    var oTexto7=document.createTextNode("telefono");
+    var celda7 = document.createElement("th");
+    var oTexto7=document.createTextNode("Telefono");
     celda7.appendChild(oTexto7);
     fila.appendChild(celda7);
     oTabla.appendChild(fila);
@@ -747,30 +751,30 @@ function tablaClientes(){
     var oTabla=document.createElement("Table");
 
     var fila = document.createElement("tr");
-    var celda3 = document.createElement("td");
-    var oTexto3=document.createTextNode(this.dni);
+    var celda3 = document.createElement("th");
+    var oTexto3=document.createTextNode("Dni");
     celda3.appendChild(oTexto3);
     fila.appendChild(celda3);
-    var celda5 = document.createElement("td");
-    var oTexto5=document.createTextNode(this.nombre);
+    var celda5 = document.createElement("th");
+    var oTexto5=document.createTextNode("Nombre");
     celda5.appendChild(oTexto5);
     fila.appendChild(celda5);
-    var celda = document.createElement("td");
-    var oTexto=document.createTextNode(this.apellidos);
+    var celda = document.createElement("th");
+    var oTexto=document.createTextNode("Apellidos");
     celda.appendChild(oTexto);
     fila.appendChild(celda);
-    var celda2 = document.createElement("td");
-    var oTexto2=document.createTextNode(this.direccion);
+    var celda2 = document.createElement("th");
+    var oTexto2=document.createTextNode("Direccion");
     celda2.appendChild(oTexto2);
     fila.appendChild(celda2);
 
-    var celda4 = document.createElement("td");
-    var oTexto4=document.createTextNode(this.email);
+    var celda4 = document.createElement("th");
+    var oTexto4=document.createTextNode("Email");
     celda4.appendChild(oTexto4);
     fila.appendChild(celda4);
 
-    var celda6 = document.createElement("td");
-    var oTexto6=document.createTextNode(this.telefono);
+    var celda6 = document.createElement("th");
+    var oTexto6=document.createTextNode("Telefono");
     celda6.appendChild(oTexto6);
     fila.appendChild(celda6);
 
@@ -782,10 +786,114 @@ function tablaClientes(){
     return oTabla;
 }
 
+//----------------funcion tabla de vehiculos
+
+function tablaVehiculos(){
+    var oTabla=document.createElement("Table");
+
+    var fila = document.createElement("tr");
+    var celda = document.createElement("th");
+    var oTexto=document.createTextNode("Matricula");
+    celda.appendChild(oTexto);
+    fila.appendChild(celda);
+    var celda2 = document.createElement("th");
+    var oTexto2=document.createTextNode("Marca");
+    celda2.appendChild(oTexto2);
+    fila.appendChild(celda2);
+    var celda3 = document.createElement("th");
+    var oTexto3=document.createTextNode("Modelo");
+    celda3.appendChild(oTexto3);
+    fila.appendChild(celda3);
+    var celda4 = document.createElement("th");
+    var oTexto4=document.createTextNode("Tipo");
+    celda4.appendChild(oTexto4);
+    fila.appendChild(celda4);
+
+    oTabla.appendChild(fila);
+
+    for(var i=0;i<autoescuela.vehiculos.length;i++){
+        oTabla.appendChild(autoescuela.vehiculos[i].fila());
+    }
+    return oTabla;
+}
+
+//-----Funcion tablaClases
+
+function tablaClases(){
+    var oTabla=document.createElement("Table");
+
+    var fila = document.createElement("tr");
+    var celda = document.createElement("th");
+    var oTexto=document.createTextNode("Duracion");
+    celda.appendChild(oTexto);
+    fila.appendChild(celda);
+    var celda2 = document.createElement("th");
+    var oTexto2=document.createTextNode("Fecha");
+    celda2.appendChild(oTexto2);
+    fila.appendChild(celda2);
+    var celda3 = document.createElement("th");
+    var oTexto3=document.createTextNode("Hora");
+    celda3.appendChild(oTexto3);
+    fila.appendChild(celda3);
+
+    oTabla.appendChild(fila);
+
+    for(var i=0;i<autoescuela.clases.length;i++){
+        oTabla.appendChild(autoescuela.clases[i].fila());
+    }
+    return oTabla;
+}
 
 
+//---------funcion tablasMatriculas
+function tablaMatriculas(){
+    var oTabla=document.createElement("Table");
 
+    var fila = document.createElement("tr");
+    var celda = document.createElement("th");
+    var oTexto=document.createTextNode("AsistenciaExamen");
+    celda.appendChild(oTexto);
+    fila.appendChild(celda);
+    var celda2 = document.createElement("th");
+    var oTexto2=document.createTextNode("CantidadAbonada");
+    celda2.appendChild(oTexto2);
+    fila.appendChild(celda2);
+    var celda3 = document.createElement("th");
+    var oTexto3=document.createTextNode("ExPracticoPass");
+    celda3.appendChild(oTexto3);
+    fila.appendChild(celda3);
+    var celda4 = document.createElement("th");
+    var oTexto4=document.createTextNode("ExTeoricoPass");
+    celda4.appendChild(oTexto4);
+    fila.appendChild(celda4);
+    var celda5 = document.createElement("th");
+    var oTexto5=document.createTextNode("Fecha");
+    celda5.appendChild(oTexto5);
+    fila.appendChild(celda5);
+    var celda6 = document.createElement("th");
+    var oTexto6=document.createTextNode("Identificador");
+    celda6.appendChild(oTexto6);
+    fila.appendChild(celda6);
+    var celda7 = document.createElement("th");
+    var oTexto7=document.createTextNode("NumeroPracticas");
+    celd7.appendChild(oTexto7);
+    fila.appendChild(celda7);
+    var celda8 = document.createElement("th");
+    var oTexto8=document.createTextNode("Precio");
+    celda8.appendChild(oTexto8);
+    fila.appendChild(celda8);
+    var celda9 = document.createElement("th");
+    var oTexto9=document.createTextNode("Tipo");
+    celda9.appendChild(oTexto9);
+    fila.appendChild(celda9);
 
+    oTabla.appendChild(fila);
+
+    for(var i=0;i<autoescuela.matriculas.length;i++){
+        oTabla.appendChild(autoescuela.matriculas[i].fila());
+    }
+    return oTabla;
+}
 
 
 ///-------------------objeto autoescuela
