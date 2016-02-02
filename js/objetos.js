@@ -1,8 +1,9 @@
 //objeto Vehiculo------------------------------------------------------
-    function Vehiculo(sMatricula,sMarca,sModelo){
+    function Vehiculo(sMatricula,sMarca,sModelo,sTipo){
         this.matricula=sMatricula;
         this.marca=sMarca;
         this.modelo= sModelo;
+        this.tipo=sTipo;
     }
 
 //metodos
@@ -21,125 +22,14 @@ Vehiculo.prototype.fila= function () {
     var oTexto3=document.createTextNode(this.modelo);
     celda3.appendChild(oTexto3);
     fila.appendChild(celda3);
-
-    return fila;
-}
-
-//objeto Moto------------------------------------------------------
-//hereda de Vehiculo
-function Moto(sMatricula,sMarca,sModelo,iCilindrada){
-    Vehiculo.apply(this,[sMatricula,sMarca,sModelo]);
-    this.cilindrada=iCilindrada;
-}
-//herencia
-Moto.prototype = Object.create(Vehiculo.prototype);
-Moto.prototype.constructor = Moto;
-
-//métodos
-Moto.prototype.fila= function () {
-     
-    var fila = document.createElement("tr");
-    var celda = document.createElement("td");
-    var oTexto=document.createTextNode(this.matricula);
-    celda.appendChild(oTexto);
-    fila.appendChild(celda);
-    var celda2 = document.createElement("td");
-    var oTexto2=document.createTextNode(this.marca);
-    celda2.appendChild(oTexto2);
-    fila.appendChild(celda2);
-    var celda3 = document.createElement("td");
-    var oTexto3=document.createTextNode(this.modelo);
-    celda3.appendChild(oTexto3);
-    fila.appendChild(celda3);
     var celda4 = document.createElement("td");
-    var oTexto4=document.createTextNode(this.cilindrada);
+    var oTexto4=document.createTextNode(this.tipo);
     celda4.appendChild(oTexto4);
     fila.appendChild(celda4);
 
     return fila;
 }
 
-//objeto Camion------------------------------------------------------
-//hereda de Vehiculo
-function Camion(sMatricula,sMarca,sModelo,sCategoria){
-    Vehiculo.apply(this,[sMatricula,sMarca,sModelo]);
-    this.categoria=sCategoria;
-}
-//herencia
-Camion.prototype = Object.create(Vehiculo.prototype);
-Camion.prototype.constructor = Camion;
-
-//métodos
-Camion.prototype.fila= function () {
-     
-    var fila = document.createElement("tr");
-    var celda = document.createElement("td");
-    var oTexto=document.createTextNode(this.matricula);
-    celda.appendChild(oTexto);
-    fila.appendChild(celda);
-    var celda2 = document.createElement("td");
-    var oTexto2=document.createTextNode(this.marca);
-    celda2.appendChild(oTexto2);
-    fila.appendChild(celda2);
-    var celda3 = document.createElement("td");
-    var oTexto3=document.createTextNode(this.modelo);
-    celda3.appendChild(oTexto3);
-    fila.appendChild(celda3);
-    var celda4 = document.createElement("td");
-    var oTexto4=document.createTextNode(this.categoria);
-    celda4.appendChild(oTexto4);
-    fila.appendChild(celda4);
-
-    return fila;
-}
-
-//objeto Coche------------------------------------------------------
-//hereda de Vehiculo
-function Coche(sMatricula,sMarca,sModelo,sMotor,iPotencia){
-    Vehiculo.apply(this,[sMatricula,sMarca,sModelo]);
-    this.motor=sMotor;
-    this.potencia=iPotencia;
-}
-//herencia
-Coche.prototype = Object.create(Vehiculo.prototype);
-Coche.prototype.constructor = Coche;
-
-//métodos
-Coche.prototype.fila= function () {
-     
-    var fila = document.createElement("tr");
-    var celda = document.createElement("td");
-    var oTexto=document.createTextNode(this.matricula);
-    celda.appendChild(oTexto);
-    fila.appendChild(celda);
-    var celda2 = document.createElement("td");
-    var oTexto2=document.createTextNode(this.marca);
-    celda2.appendChild(oTexto2);
-    fila.appendChild(celda2);
-    var celda3 = document.createElement("td");
-    var oTexto3=document.createTextNode(this.modelo);
-    celda3.appendChild(oTexto3);
-    fila.appendChild(celda3);
-    var celda4 = document.createElement("td");
-    var oTexto4=document.createTextNode(this.motor);
-    celda4.appendChild(oTexto4);
-    fila.appendChild(celda4);
-    var celda5 = document.createElement("td");
-    var oTexto5=document.createTextNode(this.potencia);
-    celda5.appendChild(oTexto5);
-    fila.appendChild(celda5);
-
-    return fila;
-}
-
-//objeto Oferta------------------------------------------------------
-function Oferta(iNumConvocatorias,iNumPracticas,fPrecio){
-    this.numeroConvocatorias=iNumConvocatorias;
-    this.numeroPracticas=iNumPracticas;
-    this.precio= fPrecio;
-}
-
-//métodos
 
 //objeto Matricula------------------------------------------------------
 function Matricula(iAsistenciaExamen,fCantidadAbonada,bExPracticoPass,bExTeoricoPass,dFecha,sIdentificador,iNumeroPracticas,fPrecio,sTipo){
@@ -198,13 +88,13 @@ Matricula.prototype.fila= function () {
     return fila;
 }
 //objeto Persona------------------------------------------------------
-function Persona(sApellidos,sDireccion,sDni,sEmail,sNombre,sTelefono){
+function Persona(sApellidos,sDireccion,sDni,sEmail,sNombre,iTelefono){
     this.apellidos=sApellidos;
     this.direccion=sDireccion;
     this.dni= sDni;
     this.email=sEmail;
     this.nombre=sNombre;
-    this.telefono=sTelefono;
+    this.telefono=iTelefono;
 }
 
 //métodos
@@ -243,9 +133,9 @@ Persona.prototype.fila= function () {
 
 //objeto Profesor------------------------------------------------------
 //hereda de Persona
-function Profesor(sApellidos,sDireccion,sDni,sEmail,sNombre,sTelefono,iId){
-    Persona.apply(this,[sApellidos,sDireccion,sDni,sEmail,sNombre,sTelefono]);
-    this.id=iId;
+function Profesor(sApellidos,sDireccion,sDni,sEmail,sNombre,iTelefono,sId){
+    Persona.apply(this,[sApellidos,sDireccion,sDni,sEmail,sNombre,iTelefono]);
+    this.id=sId;
 }
 //herencia
 Profesor.prototype = Object.create(Persona.prototype);
@@ -292,9 +182,9 @@ Profesor.prototype.fila= function () {
 
 //objeto Cliente------------------------------------------------------
 //hereda de Persona
-function Cliente(sApellidos,sDireccion,sDni,sEmail,sNombre,sTelefono,iNumeroRegistro){
-    Persona.apply(this,[sApellidos,sDireccion,sDni,sEmail,sNombre,sTelefono]);
-    this.numeroRegistro=iNumeroRegistro;
+function Cliente(sApellidos,sDireccion,sDni,sEmail,sNombre,iTelefono,sNumeroRegistro){
+    Persona.apply(this,[sApellidos,sDireccion,sDni,sEmail,sNombre,iTelefono]);
+    this.numeroRegistro=sNumeroRegistro;
 }
 //herencia
 Cliente.prototype = Object.create(Persona.prototype);
@@ -437,12 +327,12 @@ function Autoescuela(sCif,sDireccion,sNombre,sTelefono){
     this.direccion=sDireccion;
     this.nombre=sNombre;
     this.telefono=sTelefono;
-    this.ofertas=new Oferta();
-    this.matriculas=new Matricula();
-    this.clientes=new Cliente();
-    this.profesores=new Profesor();
-    this.clases=new Clases();
-    this.vehiculos=new Vehiculo();
+
+    this.matriculas=[];
+    this.clientes=[];
+    this.profesores=[];
+    this.clases=[];
+    this.vehiculos=[];
 }
 
 //métodos
@@ -485,7 +375,7 @@ Autoescuela.prototype.modificaVehiculo=function(vehiculo){
     }
 }
 
-Autoescuela.prototype.altaClase=function(Clase){
+Autoescuela.prototype.altaClase=function(clase){
     this.clases.push(clase);
 }
 
@@ -500,3 +390,46 @@ Autoescuela.prototype.modificaMatricula=function(matricula){
         }
     }
 }
+
+
+Autoescuela.prototype.buscaPersona=function(sDni) {
+    var arrayAuxProfesores=this.profesores;
+    var arrayAuxClientes=this.clientes;
+    var arrayPersonas = arrayAuxProfesores.concat(arrayAuxClientes);
+    var bEncontrado=false;
+
+    for(var i=0;i<arrayPersonas.length;i++) {
+        if (this.arrayPersonas[i].dni == sDni) {
+            bEncontrado=true;
+        }
+    }
+
+    return bEncontrado;
+}
+
+Autoescuela.prototype.buscaVehiculo=function(sMatricula) {
+    var arrayVehiculos = this.vehiculos;
+    var bEncontrado=false;
+
+    for(var i=0;i<arrayVehiculos.length;i++) {
+        if (this.arrayVehiculos[i].matricula == sMatricula) {
+            bEncontrado=true;
+        }
+    }
+
+    return bEncontrado;
+}
+
+Autoescuela.prototype.buscaMatricula=function(sIdentificador) {
+    var arrayMatriculas = this.matriculas;
+    var bEncontrado=false;
+
+    for(var i=0;i<arrayMatriculas.length;i++) {
+        if (this.arrayMatriculas[i].identificador == sIdentificador) {
+            bEncontrado=true;
+        }
+    }
+
+    return bEncontrado;
+}
+
