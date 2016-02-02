@@ -69,7 +69,7 @@
             <identificador>1M</identificador>
             <numeroPracticas>0</numeroPracticas>
             <precio>320</precio>
-            <tipo>Moto</tipo>
+            <tipo>a</tipo>
         </matricula>
         <matricula>
             <asistenciaExamen>2</asistenciaExamen>
@@ -80,7 +80,7 @@
             <identificador>2M</identificador>
             <numeroPracticas>15</numeroPracticas>
             <precio>780</precio>
-            <tipo>Coche</tipo>
+            <tipo>b</tipo>
         </matricula>
     </matriculas>
     <clases>
