@@ -534,6 +534,15 @@ function validarMatricula(oCapa){
 //----- Funciones auxiliares -----------------------------
 //--------------------------------------------------------
 
+function borrarTodosOption(oSelect){
+    var oOptions=oSelect.getElementsByTagName("option");
+
+    while(oOptions.length>0){
+        oOptions[0].parentNode.removeChild(oOptions[0]);
+    }
+}
+
+
 function fechaStringADate(sFecha){
     // "DD/MM/YYYY"
     var arrayDatos=sFecha.slice("/");
