@@ -240,20 +240,20 @@ function mostrarListadoClase(){
 function mostrarAltaMatricula(){
     ocultarTodosFormularios();
 
-    //var oCapa = document.getElementById("altaMatricula");
-    //limpiarCampos(oCapa);
-    //oCapa.classList.remove("oculto");
-    //oCapa.classList.add("capaVisible");
+    var oCapa = document.getElementById("altaMatricula");
+    limpiarCampos(oCapa);
+    oCapa.classList.remove("oculto");
+    oCapa.classList.add("capaVisible");
 }
 function mostrarModificarMatricula(){
     ocultarTodosFormularios();
 
-    //var oCapa = document.getElementById("modificarMatricula");
-    //limpiarCampos(oCapa);
-    //oCapa.classList.remove("oculto");
-    //oCapa.classList.add("capaVisible");
+    var oCapa = document.getElementById("modificarMatricula");
+    limpiarCampos(oCapa);
+    oCapa.classList.remove("oculto");
+    oCapa.classList.add("capaVisible");
 
-    //cargarSelectModificarMatricula();
+    cargarSelectModificarMatricula();
 }
 function mostrarListadoMatricula(){
     ocultarTodosFormularios();
