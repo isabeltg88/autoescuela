@@ -16,53 +16,57 @@ function loadXMLDoc(filename) {
     return xhttp.responseXML;
 }
 
-//var oXML = loadXMLDoc("archivo.xml");
+var oXML = loadXMLDoc("datos.xml");
 
 window.addEventListener("load",inicio,false);
 
 function inicio(){
+    cargarDatosIniciales();
+
     var oLI=document.querySelectorAll(".dropdown ul li");//Todos los li de la barra de navegacion (18)
 
     //Menu Alta Profesor
     oLI[0].addEventListener("click",mostrarAltaProfesor,false);
     //Menu Modificacion Profesor
     oLI[1].addEventListener("click",mostrarModificarProfesor,false);
-    //Menu Baja Profesor
-    oLI[2].addEventListener("click",mostrarBajaProfesor,false);
     //Menu Listado Profesor
-    oLI[3].addEventListener("click",mostrarListadoProfesor,false);
+    oLI[2].addEventListener("click",mostrarListadoProfesor,false);
 
     //Menu Alta Cliente
-    oLI[4].addEventListener("click",mostrarAltaCliente,false);
+    oLI[3].addEventListener("click",mostrarAltaCliente,false);
     //Menu Modificacion Cliente
-    oLI[5].addEventListener("click",mostrarModificarCliente,false);
-    //Menu Baja Cliente
-    oLI[6].addEventListener("click",mostrarBajaCliente,false);
+    oLI[4].addEventListener("click",mostrarModificarCliente,false);
     //Menu Listado Cliente
-    oLI[7].addEventListener("click",mostrarListadoCliente,false);
+    oLI[5].addEventListener("click",mostrarListadoCliente,false);
 
     //Menu Alta Vehiculo
-    oLI[8].addEventListener("click",mostrarAltaVehiculo,false);
+    oLI[6].addEventListener("click",mostrarAltaVehiculo,false);
     //Menu Modificacion Vehiculo
-    oLI[9].addEventListener("click",mostrarModificarVehiculo,false);
-    //Menu Baja Vehiculo
-    oLI[10].addEventListener("click",mostrarBajaVehiculo,false);
+    oLI[7].addEventListener("click",mostrarModificarVehiculo,false);
     //Menu Listado Vehiculo
-    oLI[11].addEventListener("click",mostrarListadoVehiculo,false);
+    oLI[8].addEventListener("click",mostrarListadoVehiculo,false);
 
     //Menu Alta Clase
-    oLI[12].addEventListener("click",mostrarAltaClase,false);
+    oLI[9].addEventListener("click",mostrarAltaClase,false);
     //Menu Listado Clase
-    oLI[13].addEventListener("click",mostrarListadoClase,false);
+    oLI[10].addEventListener("click",mostrarListadoClase,false);
 
     //Menu Alta Matricula
-    oLI[14].addEventListener("click",mostrarAltaMatricula,false);
+    oLI[11].addEventListener("click",mostrarAltaMatricula,false);
     //Menu Modificacion Matricula
-    oLI[15].addEventListener("click",mostrarModificarMatricula,false);
-    //Menu Baja Matricula
-    oLI[16].addEventListener("click",mostrarBajaMatricula,false);
+    oLI[12].addEventListener("click",mostrarModificarMatricula,false);
     //Menu Listado Matricula
-    oLI[17].addEventListener("click",mostrarListadoMatricula,false);
+    oLI[13].addEventListener("click",mostrarListadoMatricula,false);
+
+
+    //Evento de los radios de clase
+    document.getElementsByName("radioAltaClase")[0].addEventListener("change",mostrarTipoClase,false);
+    document.getElementsByName("radioAltaClase")[1].addEventListener("change",mostrarTipoClase,false);
+    //document.frmClaseAlta.radioAltaClase.addEventListener("change",mostrarTipoClase,false);
+
+    //Eventos de los botones
+
+
 
 }
 
@@ -70,8 +74,19 @@ function inicio(){
 //----- Funciones mostrar y ocultar ----------------------
 //--------------------------------------------------------
 
+//------Funcion mostrar tipo clase------------
+function mostrarTipoClase(){
+    if(this.value=="practica"){
+        document.getElementById("altaClasePractica").classList.remove("oculto");
+        document.getElementById("altaClaseTeorica").classList.add("oculto");
+    }else {
+        document.getElementById("altaClaseTeorica").classList.remove("oculto");
+        document.getElementById("altaClasePractica").classList.add("oculto");
+    }
+}
+
 //------Funcion para ocultar todos los formularios--------
-function ocultarTodosFormularios(){
+function ocultarTodosFormularios2(){
     var oCapasFormularios=document.querySelectorAll("#formularios>div");//capas de los formularios
 
     for(var i=0;i<oCapasFormularios.length;i++){
@@ -80,14 +95,26 @@ function ocultarTodosFormularios(){
             oCapasFormularios[i].classList.add("oculto");
         }
     }
+
+    var oCapaTabla = document.getElementById("listadosTablas");
+
+    if(oCapaTabla.childElementCount>0){
+        oCapaTabla.removeChild(oCapaTabla.firstElementChild);
+    }
 }
 
-function ocultarTodosFormularios2(){ //todo ¿mejor?
+function ocultarTodosFormularios(){
     var oCapasFormularios=document.querySelectorAll(".capaVisible");//capas de los formularios visibles
 
     for(var i=0;i<oCapasFormularios.length;i++){
         oCapasFormularios[i].classList.remove("capaVisible");
         oCapasFormularios[i].classList.add("oculto");
+    }
+
+    var oCapaTabla = document.getElementById("listadosTablas");
+
+    if(oCapaTabla.childElementCount>0){
+        oCapaTabla.removeChild(oCapaTabla.firstElementChild);
     }
 }
 
@@ -107,14 +134,8 @@ function mostrarModificarProfesor(){
     limpiarCampos(oCapa);
     oCapa.classList.remove("oculto");
     oCapa.classList.add("capaVisible");
-}
-function mostrarBajaProfesor(){
-    ocultarTodosFormularios();
 
-    var oCapa = document.getElementById("bajaProfesor");
-    limpiarCampos(oCapa);
-    oCapa.classList.remove("oculto");
-    oCapa.classList.add("capaVisible");
+    cargarSelectModificarProfesor();
 }
 function mostrarListadoProfesor(){
     ocultarTodosFormularios();
@@ -125,7 +146,7 @@ function mostrarListadoProfesor(){
     oCapa.classList.add("capaVisible");
 
     //todo mostrar la tabla de profesores
-
+    oCapa.appendChild(tablaProfesores());
 }
 //------Fin Funciones mostrarProfesor--------
 
@@ -145,14 +166,8 @@ function mostrarModificarCliente(){
     limpiarCampos(oCapa);
     oCapa.classList.remove("oculto");
     oCapa.classList.add("capaVisible");
-}
-function mostrarBajaCliente(){
-    ocultarTodosFormularios();
 
-    var oCapa = document.getElementById("bajaCliente");
-    limpiarCampos(oCapa);
-    oCapa.classList.remove("oculto");
-    oCapa.classList.add("capaVisible");
+    cargarSelectModificarCliente();
 }
 function mostrarListadoCliente(){
     ocultarTodosFormularios();
@@ -183,14 +198,8 @@ function mostrarModificarVehiculo(){
     limpiarCampos(oCapa);
     oCapa.classList.remove("oculto");
     oCapa.classList.add("capaVisible");
-}
-function mostrarBajaVehiculo(){
-    ocultarTodosFormularios();
 
-    var oCapa = document.getElementById("bajaVehiculo");
-    limpiarCampos(oCapa);
-    oCapa.classList.remove("oculto");
-    oCapa.classList.add("capaVisible");
+    cargarSelectModificarVehiculo();
 }
 function mostrarListadoVehiculo(){
     ocultarTodosFormularios();
@@ -243,14 +252,8 @@ function mostrarModificarMatricula(){
     //limpiarCampos(oCapa);
     //oCapa.classList.remove("oculto");
     //oCapa.classList.add("capaVisible");
-}
-function mostrarBajaMatricula(){
-    ocultarTodosFormularios();
 
-    //var oCapa = document.getElementById("bajaMatricula");
-    //limpiarCampos(oCapa);
-    //oCapa.classList.remove("oculto");
-    //oCapa.classList.add("capaVisible");
+    //cargarSelectModificarMatricula();
 }
 function mostrarListadoMatricula(){
     ocultarTodosFormularios();
@@ -310,6 +313,25 @@ function limpiarCampos(oCapa){
 
 }
 
+
+//--------------------------------------------------------
+//----- Funciones cargar select  -------------------------
+//--------------------------------------------------------
+function cargarSelectModificarProfesor(){
+    var arrayProfesores=autoescuela.profesores;
+}
+
+function cargarSelectModificarCliente(){
+
+}
+
+function cargarSelectModificarVehiculo(){
+
+}
+
+function cargarSelectModificarMatricula(){
+
+}
 
 //--------------------------------------------------------
 //----- Funciones validar campos -------------------------
@@ -392,6 +414,17 @@ function validarPersona(oCapa){
         }
 
         sErrores += "DNI incorrectos\n";
+
+        //Marcar error
+        oInputs[2].classList.add("error");
+    }else if(autoescuela.buscaPersona(sDni)){
+        if(bValido){  //Si es el primero en fallar,coge el foco
+            bValido = false;
+            //Este camo obtiene el foco
+            oInputs[2].focus();
+        }
+
+        sErrores += "Persona ya existe\n";
 
         //Marcar error
         oInputs[2].classList.add("error");
@@ -501,6 +534,155 @@ function validarMatricula(oCapa){
 //----- Funciones auxiliares -----------------------------
 //--------------------------------------------------------
 
+function fechaStringADate(sFecha){
+    // "DD/MM/YYYY"
+    var arrayDatos=sFecha.slice("/");
+
+    var sDia=arrayDatos[0];
+    var sMes=arrayDatos[1];
+    var sAnyo=arrayDatos[2];
+
+    var dFecha=new Date(sAnyo,sMes,sDia);
+
+    return dFecha;
+
+}
+
+function cargarDatosIniciales(){
+    var sCif = oXML.getElementsByTagName("cif")[0].firstChild.nodeValue;
+    var sCalle= oXML.getElementsByTagName("calle")[0].firstChild.nodeValue;
+    var sNombre= oXML.getElementsByTagName("nombre")[0].firstChild.nodeValue;
+    var iTelefono= parseInt(oXML.getElementsByTagName("telefono")[0].firstChild.nodeValue);
+
+    autoescuela=new Autoescuela(sCif,sCalle,sNombre,iTelefono);
+
+    //introducir profesores
+    var oProfesores=oXML.getElementsByTagName("profesor");
+
+    for(var i=0;i<oProfesores.length;i++){
+        var oProfesorActual=oProfesores[i];
+
+        var sApellidos=oProfesorActual.getElementsByTagName("apellidos")[0].firstChild.nodeValue;
+        var sDireccion=oProfesorActual.getElementsByTagName("direccion")[0].firstChild.nodeValue;
+        var sDni=oProfesorActual.getElementsByTagName("dni")[0].firstChild.nodeValue;
+        var sEmail=oProfesorActual.getElementsByTagName("email")[0].firstChild.nodeValue;
+        var sNombre=oProfesorActual.getElementsByTagName("nombre")[0].firstChild.nodeValue;
+        var iTelefono=parseInt(oProfesorActual.getElementsByTagName("telefono")[0].firstChild.nodeValue);
+
+        var sId=iIdProfesor+"P";
+
+        var oProfesor=new Profesor(sApellidos,sDireccion,sDni,sEmail,sNombre,iTelefono,sId);
+
+        autoescuela.altaProfesor(oProfesor);
+
+        iIdProfesor++;
+    }
+
+    //introducir clientes
+    var oClientes=oXML.getElementsByTagName("cliente");
+
+    for(var i=0;i<oClientes.length;i++){
+        var oClienteActual=oClientes[i];
+
+        var sApellidos=oClienteActual.getElementsByTagName("apellidos")[0].firstChild.nodeValue;
+        var sDireccion=oClienteActual.getElementsByTagName("direccion")[0].firstChild.nodeValue;
+        var sDni=oClienteActual.getElementsByTagName("dni")[0].firstChild.nodeValue;
+        var sEmail=oClienteActual.getElementsByTagName("email")[0].firstChild.nodeValue;
+        var sNombre=oClienteActual.getElementsByTagName("nombre")[0].firstChild.nodeValue;
+        var iTelefono=parseInt(oClienteActual.getElementsByTagName("telefono")[0].firstChild.nodeValue);
+
+        var sNumeroRegistro=iNRegCliente+"C";
+
+        var oCliente=new Cliente(sApellidos,sDireccion,sDni,sEmail,sNombre,iTelefono,sNumeroRegistro);
+
+        autoescuela.altaCliente(oCliente);
+
+        iNRegCliente++;
+    }
+
+    //introducir clases
+    var oClasesPracticas=oXML.getElementsByTagName("clase_practica");
+
+    for(var i=0;i<oClasesPracticas.length;i++) {
+        var oClasesPracticasActual = oClasesPracticas[i];
+
+        var fDuracion = parseFloat(oClasesPracticasActual.getElementsByTagName("duracion")[0].firstChild.nodeValue);
+        var dFecha = fechaStringADate(oClasesPracticasActual.getElementsByTagName("fecha")[0].firstChild.nodeValue);
+        var sHora = oClasesPracticasActual.getElementsByTagName("hora")[0].firstChild.nodeValue;
+        var fTarifa_hora = parseFloat(oClasesPracticasActual.getElementsByTagName("tarifa_hora")[0].firstChild.nodeValue);
+
+        var oClaseP=new Practica(fDuracion,dFecha,sHora,fTarifa_hora);
+
+        autoescuela.altaClase(oClaseP);
+
+    }
+
+    var oClasesTeoricas=oXML.getElementsByTagName("clase_teorica");
+
+    for(var i=0;i<oClasesTeoricas.length;i++) {
+        var oClasesTeoricasActual = oClasesTeoricas[i];
+
+        var fDuracion = parseFloat(oClasesTeoricasActual.getElementsByTagName("duracion")[0].firstChild.nodeValue);
+        var dFecha = fechaStringADate(oClasesTeoricasActual.getElementsByTagName("fecha")[0].firstChild.nodeValue);
+        var sHora = oClasesTeoricasActual.getElementsByTagName("hora")[0].firstChild.nodeValue;
+        var iAforo = parseInt(oClasesTeoricasActual.getElementsByTagName("aforo")[0].firstChild.nodeValue);
+
+        var oClaseT=new Teorica(fDuracion,dFecha,sHora,iAforo);
+
+        autoescuela.altaClase(oClaseT);
+
+    }
+
+    //introducir vehiculos
+    var oVehiculos=oXML.getElementsByTagName("vehiculo");
+
+    for(var i=0;i<oVehiculos.length;i++) {
+        var oVehiculoActual = oVehiculos[i];
+
+        var sMatricula = oVehiculoActual.getElementsByTagName("matricula")[0].firstChild.nodeValue;
+        var sMarca = oVehiculoActual.getElementsByTagName("marca")[0].firstChild.nodeValue;
+        var sModelo = oVehiculoActual.getElementsByTagName("modelo")[0].firstChild.nodeValue;
+        var sTipo = oVehiculoActual.getElementsByTagName("tipo")[0].firstChild.nodeValue;
+
+        var oVehiculo=new Vehiculo(sMatricula,sMarca,sModelo,sTipo);
+
+        autoescuela.altaVehiculo(oVehiculo);
+
+    }
+
+
+    //introducir matriculas
+    var oMatriculas=oXML.getElementsByTagName("matricula");
+
+    for(var i=0;i<oMatriculas.length;i++) {
+        var oMatriculaActual = oMatriculas[i];
+
+        var iAsistenciaExamen = parseInt(oMatriculaActual.getElementsByTagName("asistenciaExamen")[0].firstChild.nodeValue);
+        var fCantidadAbonada = parseFloat(oMatriculaActual.getElementsByTagName("cantidadAbonada")[0].firstChild.nodeValue);
+
+        var bExPracticoPass=false;
+        if(oMatriculaActual.getElementsByTagName("exPracticoPass")[0].firstChild.nodeValue=="si"){
+            bExPracticoPass=true;
+        }
+
+        var bExTeoricoPass = false;
+        if(oMatriculaActual.getElementsByTagName("exTeoricoPass")[0].firstChild.nodeValue=="si"){
+            bExTeoricoPass=true;
+        }
+
+        var dFecha = fechaStringADate(oMatriculaActual.getElementsByTagName("fecha")[0].firstChild.nodeValue);
+        var sIdentificador = oMatriculaActual.getElementsByTagName("identificador")[0].firstChild.nodeValue;
+        var iNumeroPracticas = parseInt(oMatriculaActual.getElementsByTagName("numeroPracticas")[0].firstChild.nodeValue);
+        var fPrecio = parseFloat(oMatriculaActual.getElementsByTagName("precio")[0].firstChild.nodeValue);
+        var sTipo = oMatriculaActual.getElementsByTagName("tipo")[0].firstChild.nodeValue;
+
+        var oMatricula=new Matricula(iAsistenciaExamen,fCantidadAbonada,bExPracticoPass,bExTeoricoPass,dFecha,sIdentificador,iNumeroPracticas,fPrecio,sTipo);
+
+        autoescuela.altaVehiculo(oMatricula);
+
+    }
+
+}
 
 
 
@@ -599,4 +781,8 @@ function tablaClientes(){
 
 ///-------------------objeto autoescuela
 
-var autoescuela=new Autoescuela("1111","calle","el multazo","111111");
+var autoescuela;
+
+var iIdProfesor=1; // iIdProfesor+"P";
+var iNRegCliente=1; // iNRegCliente+"C";
+

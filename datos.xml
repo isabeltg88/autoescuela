@@ -5,45 +5,96 @@
     <telefono>111111</telefono>
     <vehiculos>
         <vehiculo>
-
+            <matricula></matricula>
+            <marca></marca>
+            <modelo></modelo>
+            <tipo></tipo>
         </vehiculo>
         <vehiculo>
-
+            <matricula></matricula>
+            <marca></marca>
+            <modelo></modelo>
+            <tipo></tipo>
         </vehiculo>
         <vehiculo>
-
+            <matricula></matricula>
+            <marca></marca>
+            <modelo></modelo>
+            <tipo></tipo>
         </vehiculo>
     </vehiculos>
     <profesores>
         <profesor>
-
+            <apellidos></apellidos>
+            <direccion></direccion>
+            <dni></dni>
+            <email></email>
+            <nombre></nombre>
+            <telefono></telefono>
         </profesor>
         <profesor>
-
+            <apellidos></apellidos>
+            <direccion></direccion>
+            <dni></dni>
+            <email></email>
+            <nombre></nombre>
+            <telefono></telefono>
         </profesor>
     </profesores>
     <clientes>
         <cliente>
-
+            <apellidos></apellidos>
+            <direccion></direccion>
+            <dni></dni>
+            <email></email>
+            <nombre></nombre>
+            <telefono></telefono>
         </cliente>
         <cliente>
-
+            <apellidos></apellidos>
+            <direccion></direccion>
+            <dni></dni>
+            <email></email>
+            <nombre></nombre>
+            <telefono></telefono>
         </cliente>
     </clientes>
     <matriculas>
         <matricula>
-
+            <asistenciaExamen></asistenciaExamen>
+            <cantidadAbonada></cantidadAbonada>
+            <exPracticoPass></exPracticoPass>
+            <exTeoricoPass></exTeoricoPass>
+            <fecha></fecha>
+            <identificador></identificador>
+            <numeroPracticas></numeroPracticas>
+            <precio></precio>
+            <tipo></tipo>
         </matricula>
         <matricula>
-
+            <asistenciaExamen></asistenciaExamen>
+            <cantidadAbonada></cantidadAbonada>
+            <exPracticoPass></exPracticoPass>
+            <exTeoricoPass></exTeoricoPass>
+            <fecha></fecha>
+            <identificador></identificador>
+            <numeroPracticas></numeroPracticas>
+            <precio></precio>
+            <tipo></tipo>
         </matricula>
     </matriculas>
     <clases>
-        <clase>
-
-        </clase>
-        <clase>
-
-        </clase>
+        <clase_practica>
+            <duracion></duracion>
+            <fecha></fecha>
+            <hora></hora>
+            <tarifa_hora></tarifa_hora>
+        </clase_practica>
+        <clase_teorica>
+            <duracion></duracion>
+            <fecha></fecha>
+            <hora></hora>
+            <aforo></aforo>
+        </clase_teorica>
     </clases>
 </autoescuela>

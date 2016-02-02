@@ -48,7 +48,6 @@
                                 <ul class="dropdown-menu">
                                     <li class="text-center">Alta</li>
                                     <li class="text-center">Modificaci&oacute;n</li>
-                                    <li class="text-center">Baja</li>
                                     <hr>
                                     <li class="text-center">Listado</li>
                                 </ul>
@@ -58,7 +57,6 @@
                                 <ul class="dropdown-menu">
                                     <li class="text-center">Alta</li>
                                     <li class="text-center">Modificaci&oacute;n</li>
-                                    <li class="text-center">Baja</li>
                                     <hr>
                                     <li class="text-center">Listado</li>
                                 </ul>
@@ -68,7 +66,6 @@
                                 <ul class="dropdown-menu">
                                     <li class="text-center">Alta</li>
                                     <li class="text-center">Modificaci&oacute;n</li>
-                                    <li class="text-center">Baja</li>
                                     <hr>
                                     <li class="text-center">Listado</li>
                                 </ul>
@@ -86,7 +83,6 @@
                                 <ul class="dropdown-menu">
                                     <li class="text-center">Alta</li>
                                     <li class="text-center">Modificar</li>
-                                    <li class="text-center">Baja</li>
                                     <hr>
                                     <li class="text-center">Listado</li>
                                 </ul>
@@ -190,14 +186,6 @@
                     </div>
                 </div>
                 <!-- Fin Modificar -->
-                <!-- Baja -->
-                <div class="col-sm-6 col-sm-offset-3 oculto" id="bajaProfesor">
-                    <h1 class="text-center">Baja Profesor</h1>
-                    <div id="capaSelectBajaProfesor">
-                        <!--Aqui va el select para borrar profesor-->
-                    </div>
-                </div>
-                <!-- Fin Baja -->
                 <!-- Fin Profesores -->
 
                 <!-- Clientes -->
@@ -288,14 +276,6 @@
                     </div>
                 </div>
                 <!-- Fin Modificar -->
-                <!-- Baja -->
-                <div class="col-sm-6 col-sm-offset-3 oculto" id="bajaCliente">
-                    <h1 class="text-center">Baja Cliente</h1>
-                    <div id="capaSelectBajaCliente">
-                        <!--Aqui va el select de clientes para borrarlo-->
-                    </div>
-                </div>
-                <!-- Fin Baja -->
                 <!-- Fin Clientes -->
 
                 <!-- Vehiculos -->
@@ -319,50 +299,16 @@
                         </div>
                         &nbsp;
                         <div class="input-group col-xs-12">
-                            <label class="col-xs-1 col-xs-offset-1 control-label">Tipo:</label>
-                            <div class="col-xs-10">
-                                <label class="radio-inline">
-                                    <input name="radioAltaVehi" value="moto" checked="checked" type="radio">
-                                    Moto
-                                </label>
-                                <label class="radio-inline">
-                                    <input name="radioAltaVehi" value="camion" type="radio">
-                                    Cami&oacute;n
-                                </label>
-                                <label class="radio-inline">
-                                    <input name="radioAltaVehi" value="coche" type="radio">
-                                    Coche
-                                </label>
-                            </div>
+                            <label class="input-group-addon">Tipo:</label>
+                            <select name="sltTipoAltaVehi" class="form-control">
+                                <option value="0">Seleccione un tipo de vehiculo</option>
+                                <option value="moto">Moto</option>
+                                <option value="coche">Coche</option>
+                                <option value="camion">Camion</option>
+                            </select>
                         </div>
-
                         &nbsp;
-                        <div id="altaVehiculoMoto">
-                            <div class="input-group col-xs-12">
-                                <span class="input-group-addon">Cilindrada: </span>
-                                <input name="txtCilindradaAltaVehi" type="text" class="form-control" placeholder="cilindrada"/>
-                            </div>
-                            &nbsp;
-                        </div>
-                        <div id="altaVehiculoCamion" class="oculto">
-                            <div class="input-group col-xs-12">
-                                <span class="input-group-addon">Categor&iacute;a: </span>
-                                <input name="txtCategoriaAltaVehi" type="text" class="form-control" placeholder="categor&iacute;a"/>
-                            </div>
-                            &nbsp;
-                        </div>
-                        <div id="altaVehiculoCoche" class="oculto">
-                            <div class="input-group col-xs-12">
-                                <span class="input-group-addon">Motor: </span>
-                                <input name="txtMotorAltaVehi" type="text" class="form-control" placeholder="motor"/>
-                            </div>
-                            &nbsp;
-                            <div class="input-group col-xs-12">
-                                <span class="input-group-addon">Potencia: </span>
-                                <input name="txtPotenciaAltaVehi" type="text" class="form-control" placeholder="potencia"/>
-                            </div>
-                            &nbsp;
-                        </div>
+
 
                         <div class="input-group col-xs-12">
                             <input type="button" name="btnEnviarAltaVehi" value="Alta" class="btn btn-primary col-xs-12"/>
@@ -394,49 +340,15 @@
                             </div>
                             &nbsp;
                             <div class="input-group col-xs-12">
-                                <label class="col-xs-1 col-xs-offset-1 control-label">Tipo:</label>
-                                <div class="col-xs-10">
-                                    <label class="radio-inline">
-                                        <input name="radioModificarVehi" value="moto" checked="checked" type="radio">
-                                        Moto
-                                    </label>
-                                    <label class="radio-inline">
-                                        <input name="radioModificarVehi" value="camion" type="radio">
-                                        Cami&oacute;n
-                                    </label>
-                                    <label class="radio-inline">
-                                        <input name="radioModificarVehi" value="coche" type="radio">
-                                        Coche
-                                    </label>
-                                </div>
+                                <label class="input-group-addon">Tipo:</label>
+                                <select name="sltTipoModificarVehi" class="form-control">
+                                    <option value="0">Seleccione un tipo de vehiculo</option>
+                                    <option value="moto">Moto</option>
+                                    <option value="coche">Coche</option>
+                                    <option value="camion">Camion</option>
+                                </select>
                             </div>
                             &nbsp;
-                            <div id="ModificarVehiculoMoto">
-                                <div class="input-group col-xs-12">
-                                    <span class="input-group-addon">Cilindrada: </span>
-                                    <input name="txtCilindradaModificarVehi" type="text" class="form-control" placeholder="cilindrada"/>
-                                </div>
-                                &nbsp;
-                            </div>
-                            <div id="ModificarVehiculoCamion" class="oculto">
-                                <div class="input-group col-xs-12">
-                                    <span class="input-group-addon">Categor&iacute;a: </span>
-                                    <input name="txtCategoriaModificarVehi" type="text" class="form-control" placeholder="categor&iacute;a"/>
-                                </div>
-                                &nbsp;
-                            </div>
-                            <div id="ModificarVehiculoCoche" class="oculto">
-                                <div class="input-group col-xs-12">
-                                    <span class="input-group-addon">Motor: </span>
-                                    <input name="txtMotorModificarVehi" type="text" class="form-control" placeholder="motor"/>
-                                </div>
-                                &nbsp;
-                                <div class="input-group col-xs-12">
-                                    <span class="input-group-addon">Potencia: </span>
-                                    <input name="txtPotenciaModificarVehi" type="text" class="form-control" placeholder="potencia"/>
-                                </div>
-                                &nbsp;
-                            </div>
 
                             <div class="input-group col-xs-12">
                                 <input type="button" name="btnEnviarModificarVehi" value="Modificar" class="btn btn-primary col-xs-12"/>
@@ -445,14 +357,6 @@
                     </div>
                 </div>
                 <!-- Fin Modificar -->
-                <!-- Baja -->
-                <div class="col-sm-6 col-sm-offset-3 oculto" id="bajaVehiculo">
-                    <h1 class="text-center">Baja Veh&iacute;culo</h1>
-                    <div id="capaSelectBajaVehiculo">
-                        <!--Aqui va el select para elegir el vehiculo para dar baja-->
-                    </div>
-                </div>
-                <!-- Fin Baja -->
                 <!-- Fin Vehiculos -->
 
                 <!-- Clases -->
@@ -519,9 +423,6 @@
                 <!-- Modificacion -->
 
                 <!-- Fin Modificacion -->
-                <!-- Baja -->
-
-                <!-- Fin Baja -->
                 <!-- Fin Matriculas -->
 
                 <!-- ------------------------------------------- -->
