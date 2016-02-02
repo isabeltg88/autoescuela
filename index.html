@@ -371,7 +371,7 @@
                         &nbsp;
                         <div class="input-group col-xs-12">
                             <span class="input-group-addon">Fecha: </span>
-                            <input name="txtFechaAltaCla" type="text" class="form-control" placeholder="dd/mm/aa"/>
+                            <input name="txtFechaAltaCla" type="text" class="form-control" placeholder="dd/mm/aaaa"/>
                         </div>
                         &nbsp;
                         <div class="input-group col-xs-12">
@@ -418,10 +418,149 @@
 
                 <!-- Matriculas --> <!--todo por aqui-->
                 <!-- Alta -->
+                <div class="col-sm-6 col-sm-offset-3 oculto" id="altaMatricula">
+                    <h1 class="text-center">Alta Clase</h1>
+                    <form name="frmMatriculaAlta" class="form-inline" role="form">
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">N&deg; de asistencias al examen: </span>
+                            <input name="txtAsistenciaExamenAltaMat" type="text" class="form-control" placeholder="Numero de asistencias al examen"/>
+                        </div>
+                        &nbsp;
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">Cantidad abonada: </span>
+                            <input name="txtCantidadAbonadaAltaMat" type="text" class="form-control" placeholder="Cantidad Abonada"/>
+                        </div>
+                        &nbsp;
+                        <div class="input-group col-xs-12">
+                            <label class="input-group-addon">Examen practico aprobado:</label>
+                            <select name="sltExPracticoPassAltaMat" class="form-control">
+                                <option value="0">Seleccione una opcion</option>
+                                <option value="no">No</option>
+                                <option value="si">Si</option>
+                            </select>
+                        </div>
+                        &nbsp;
+                        <div class="input-group col-xs-12">
+                            <label class="input-group-addon">Examen teorico aprobado:</label>
+                            <select name="sltExTeoricoPassAltaMat" class="form-control">
+                                <option value="0">Seleccione una opcion</option>
+                                <option value="no">No</option>
+                                <option value="si">Si</option>
+                            </select>
+                        </div>
+                        &nbsp;
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">Fecha: </span>
+                            <input name="txtFechaAltaMat" type="text" class="form-control" placeholder="dd/mm/aaaa"/>
+                        </div>
+                        &nbsp;
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">N&deg; practicas: </span>
+                            <input name="txtNumPracticasAltaMat" type="text" class="form-control" placeholder="Numero de practicas"/>
+                        </div>
+                        &nbsp;
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">Identificador: </span>
+                            <input name="txtIdentificadorAltaMat" type="text" class="form-control" placeholder="identificador"/>
+                        </div>
+                        &nbsp;
+                        <div class="input-group col-xs-12">
+                            <span class="input-group-addon">Precio: </span>
+                            <input name="txtPrecioAltaMat" type="text" class="form-control" placeholder="precio"/>
+                        </div>
+                        &nbsp;
+                        <div class="input-group col-xs-12">
+                            <label class="input-group-addon">Tipo:</label>
+                            <select name="sltTipoAltaMat" class="form-control">
+                                <option value="0">Seleccione un tipo de Matricula</option>
+                                <option value="a">A</option>
+                                <option value="b">B</option>
+                                <option value="c">C</option>
+                            </select>
+                        </div>
+                        &nbsp;
 
+
+                        <div class="input-group col-xs-12">
+                            <input type="button" name="btnEnviarAltaMat" value="Alta" class="btn btn-primary col-xs-12"/>
+                        </div>
+                    </form>
+                </div>
                 <!-- Fin Alta -->
                 <!-- Modificacion -->
+                <div class="col-sm-6 col-sm-offset-3 oculto" id="modificarMatricula">
+                    <h1 class="text-center">Alta Clase</h1>
+                    <div id="capaSelectModificarMatricula">
+                        <!--Aqui va el select para elegir la matricula a modificar-->
+                    </div>
+                    <div id="capaFormularioModificarMatricula">
+                        <form name="frmMatriculaModificar" class="form-inline" role="form">
+                            <div class="input-group col-xs-12">
+                                <span class="input-group-addon">N&deg; de asistencias al examen: </span>
+                                <input name="txtAsistenciaExamenModificarMat" type="text" class="form-control" placeholder="Numero de asistencias al examen"/>
+                            </div>
+                            &nbsp;
+                            <div class="input-group col-xs-12">
+                                <span class="input-group-addon">Cantidad abonada: </span>
+                                <input name="txtCantidadAbonadaModificarMat" type="text" class="form-control" placeholder="Cantidad Abonada"/>
+                            </div>
+                            &nbsp;
+                            <div class="input-group col-xs-12">
+                                <label class="input-group-addon">Examen practico aprobado:</label>
+                                <select name="sltExPracticoPassModificarMat" class="form-control">
+                                    <option value="0">Seleccione una opcion</option>
+                                    <option value="no">No</option>
+                                    <option value="si">Si</option>
+                                </select>
+                            </div>
+                            &nbsp;
+                            <div class="input-group col-xs-12">
+                                <label class="input-group-addon">Examen teorico aprobado:</label>
+                                <select name="sltExTeoricoPassModificarMat" class="form-control">
+                                    <option value="0">Seleccione una opcion</option>
+                                    <option value="no">No</option>
+                                    <option value="si">Si</option>
+                                </select>
+                            </div>
+                            &nbsp;
+                            <div class="input-group col-xs-12">
+                                <span class="input-group-addon">Fecha: </span>
+                                <input name="txtFechaModificarMat" type="text" class="form-control" placeholder="dd/mm/aaaa"/>
+                            </div>
+                            &nbsp;
+                            <div class="input-group col-xs-12">
+                                <span class="input-group-addon">N&deg; practicas: </span>
+                                <input name="txtNumPracticasModificarMat" type="text" class="form-control" placeholder="Numero de practicas"/>
+                            </div>
+                            &nbsp;
+                            <div class="input-group col-xs-12">
+                                <span class="input-group-addon">Identificador: </span>
+                                <input name="txtIdentificadorModificarMat" type="text" class="form-control" placeholder="identificador" disabled="disabled"/>
+                            </div>
+                            &nbsp;
+                            <div class="input-group col-xs-12">
+                                <span class="input-group-addon">Precio: </span>
+                                <input name="txtPrecioModificarMat" type="text" class="form-control" placeholder="precio"/>
+                            </div>
+                            &nbsp;
+                            <div class="input-group col-xs-12">
+                                <label class="input-group-addon">Tipo:</label>
+                                <select name="sltTipoModificarMat" class="form-control">
+                                    <option value="0">Seleccione un tipo de Matricula</option>
+                                    <option value="a">A</option>
+                                    <option value="b">B</option>
+                                    <option value="c">C</option>
+                                </select>
+                            </div>
+                            &nbsp;
 
+
+                            <div class="input-group col-xs-12">
+                                <input type="button" name="btnEnviarModificarMat" value="Modificar" class="btn btn-primary col-xs-12"/>
+                            </div>
+                        </form>
+                    </div>
+                </div>
                 <!-- Fin Modificacion -->
                 <!-- Fin Matriculas -->
 
