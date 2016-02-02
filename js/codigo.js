@@ -21,7 +21,7 @@ var oXML = loadXMLDoc("datos.xml");
 window.addEventListener("load",inicio,false);
 
 function inicio(){
-    cargarDatosIniciales();
+    //cargarDatosIniciales(); //todo quitar el comentario para comprobar si funciona el xml
 
     var oLI=document.querySelectorAll(".dropdown ul li");//Todos los li de la barra de navegacion (18)
 
@@ -689,7 +689,7 @@ function cargarDatosIniciales(){
 //-------funcion listado de profesores--------
 //lista todos los profesores disponibles devuelve una tabla
 function tablaProfesores(){
-    var oTabla=new Element("Table");
+    var oTabla=document.createElement("Table");
 
     var fila = document.createElement("tr");
     var celda = document.createElement("td");
@@ -735,7 +735,7 @@ function tablaProfesores(){
 //-----dvuelve una tabla con todos los clientes
 
 function tablaClientes(){
-    var oTabla=new Element("Table");
+    var oTabla=document.createElement("Table");
 
     var fila = document.createElement("tr");
     var celda3 = document.createElement("td");
