@@ -5,96 +5,96 @@
     <telefono>111111</telefono>
     <vehiculos>
         <vehiculo>
-            <matricula></matricula>
-            <marca></marca>
-            <modelo></modelo>
-            <tipo></tipo>
+            <matricula>1111AAA</matricula>
+            <marca>Ford</marca>
+            <modelo>Fiesta</modelo>
+            <tipo>Coche</tipo>
         </vehiculo>
         <vehiculo>
-            <matricula></matricula>
-            <marca></marca>
-            <modelo></modelo>
-            <tipo></tipo>
+            <matricula>2222CCC</matricula>
+            <marca>Peugeot</marca>
+            <modelo>Blueline</modelo>
+            <tipo>Moto</tipo>
         </vehiculo>
         <vehiculo>
-            <matricula></matricula>
-            <marca></marca>
-            <modelo></modelo>
-            <tipo></tipo>
+            <matricula>3333CCC</matricula>
+            <marca>Chevrolet</marca>
+            <modelo>Matiz</modelo>
+            <tipo>Coche</tipo>
         </vehiculo>
     </vehiculos>
     <profesores>
         <profesor>
-            <apellidos></apellidos>
-            <direccion></direccion>
-            <dni></dni>
-            <email></email>
-            <nombre></nombre>
-            <telefono></telefono>
+            <apellidos>Lopez Castaño</apellidos>
+            <direccion>Avda España 9</direccion>
+            <dni>11111111A</dni>
+            <email>sergio@elmultazo.com</email>
+            <nombre>Sergio</nombre>
+            <telefono>111111111</telefono>
         </profesor>
         <profesor>
-            <apellidos></apellidos>
-            <direccion></direccion>
-            <dni></dni>
-            <email></email>
-            <nombre></nombre>
-            <telefono></telefono>
+            <apellidos>Terrero Gómez</apellidos>
+            <direccion>Avda Andalucía 133</direccion>
+            <dni>22222222B</dni>
+            <email>isabel@elmultazo.com</email>
+            <nombre>Isabel</nombre>
+            <telefono>222222222</telefono>
         </profesor>
     </profesores>
     <clientes>
         <cliente>
-            <apellidos></apellidos>
-            <direccion></direccion>
-            <dni></dni>
-            <email></email>
-            <nombre></nombre>
-            <telefono></telefono>
+            <apellidos>Sanchez</apellidos>
+            <direccion>calle 1</direccion>
+            <dni>33333333C</dni>
+            <email>asanchez@gmaill.com</email>
+            <nombre>Antonio</nombre>
+            <telefono>333333333</telefono>
         </cliente>
         <cliente>
-            <apellidos></apellidos>
-            <direccion></direccion>
-            <dni></dni>
-            <email></email>
-            <nombre></nombre>
-            <telefono></telefono>
+            <apellidos>Regaña</apellidos>
+            <direccion>calle 2</direccion>
+            <dni>44444444D</dni>
+            <email>fjregana@gmaill.com</email>
+            <nombre>Francisco Javier</nombre>
+            <telefono>444444444</telefono>
         </cliente>
     </clientes>
     <matriculas>
         <matricula>
-            <asistenciaExamen></asistenciaExamen>
-            <cantidadAbonada></cantidadAbonada>
-            <exPracticoPass></exPracticoPass>
-            <exTeoricoPass></exTeoricoPass>
-            <fecha></fecha>
-            <identificador></identificador>
-            <numeroPracticas></numeroPracticas>
-            <precio></precio>
-            <tipo></tipo>
+            <asistenciaExamen>0</asistenciaExamen>
+            <cantidadAbonada>120</cantidadAbonada>
+            <exPracticoPass>no</exPracticoPass>
+            <exTeoricoPass>no</exTeoricoPass>
+            <fecha>10/12/2015</fecha>
+            <identificador>1M</identificador>
+            <numeroPracticas>0</numeroPracticas>
+            <precio>320</precio>
+            <tipo>Moto</tipo>
         </matricula>
         <matricula>
-            <asistenciaExamen></asistenciaExamen>
-            <cantidadAbonada></cantidadAbonada>
-            <exPracticoPass></exPracticoPass>
-            <exTeoricoPass></exTeoricoPass>
-            <fecha></fecha>
-            <identificador></identificador>
-            <numeroPracticas></numeroPracticas>
-            <precio></precio>
-            <tipo></tipo>
+            <asistenciaExamen>2</asistenciaExamen>
+            <cantidadAbonada>460</cantidadAbonada>
+            <exPracticoPass>no</exPracticoPass>
+            <exTeoricoPass>si</exTeoricoPass>
+            <fecha>03/01/2016</fecha>
+            <identificador>2M</identificador>
+            <numeroPracticas>15</numeroPracticas>
+            <precio>780</precio>
+            <tipo>Coche</tipo>
         </matricula>
     </matriculas>
     <clases>
         <clase_practica>
-            <duracion></duracion>
-            <fecha></fecha>
-            <hora></hora>
-            <tarifa_hora></tarifa_hora>
+            <duracion>45</duracion>
+            <fecha>07/01/2016</fecha>
+            <hora>09:00</hora>
+            <tarifa_hora>25</tarifa_hora>
         </clase_practica>
         <clase_teorica>
-            <duracion></duracion>
-            <fecha></fecha>
-            <hora></hora>
-            <aforo></aforo>
+            <duracion>90</duracion>
+            <fecha>12/01/2016</fecha>
+            <hora>17:30</hora>
+            <aforo>25</aforo>
         </clase_teorica>
     </clases>
 </autoescuela>
