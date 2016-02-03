@@ -21,7 +21,7 @@ var oXML = loadXMLDoc("datos.xml");
 window.addEventListener("load",inicio,false);
 
 function inicio(){
-    //cargarDatosIniciales(); //todo quitar el comentario para comprobar si funciona el xml
+    cargarDatosIniciales();
 
     var oLI=document.querySelectorAll(".dropdown ul li");//Todos los li de la barra de navegacion (18)
 
@@ -135,6 +135,8 @@ function mostrarModificarProfesor(){
     oCapa.classList.remove("oculto");
     oCapa.classList.add("capaVisible");
 
+    oCapa.querySelector("input[type=button]").disabled = true;
+
     cargarSelectModificarProfesor();
 }
 function mostrarListadoProfesor(){
@@ -145,7 +147,6 @@ function mostrarListadoProfesor(){
     oCapa.classList.remove("oculto");
     oCapa.classList.add("capaVisible");
 
-    //todo mostrar la tabla de profesores
     oCapa.appendChild(tablaProfesores());
 }
 //------Fin Funciones mostrarProfesor--------
@@ -167,6 +168,8 @@ function mostrarModificarCliente(){
     oCapa.classList.remove("oculto");
     oCapa.classList.add("capaVisible");
 
+    oCapa.querySelector("input[type=button]").disabled = true;
+
     cargarSelectModificarCliente();
 }
 function mostrarListadoCliente(){
@@ -177,7 +180,6 @@ function mostrarListadoCliente(){
     oCapa.classList.remove("oculto");
     oCapa.classList.add("capaVisible");
 
-    //todo mostrar la tabla de clientes
     oCapa.appendChild(tablaClientes());
 
 }
@@ -200,6 +202,8 @@ function mostrarModificarVehiculo(){
     oCapa.classList.remove("oculto");
     oCapa.classList.add("capaVisible");
 
+    oCapa.querySelector("input[type=button]").disabled = true;
+
     cargarSelectModificarVehiculo();
 }
 function mostrarListadoVehiculo(){
@@ -210,7 +214,6 @@ function mostrarListadoVehiculo(){
     oCapa.classList.remove("oculto");
     oCapa.classList.add("capaVisible");
 
-    //todo mostrar la tabla de vehiculos
     oCapa.appendChild(tablaVehiculos());
 
 }
@@ -233,7 +236,6 @@ function mostrarListadoClase(){
     oCapa.classList.remove("oculto");
     oCapa.classList.add("capaVisible");
 
-    //todo mostrar la tabla de clases
     oCapa.appendChild(tablaClases());
 
 }
@@ -256,6 +258,8 @@ function mostrarModificarMatricula(){
     oCapa.classList.remove("oculto");
     oCapa.classList.add("capaVisible");
 
+    oCapa.querySelector("input[type=button]").disabled = true;
+
     cargarSelectModificarMatricula();
 }
 function mostrarListadoMatricula(){
@@ -268,7 +272,6 @@ function mostrarListadoMatricula(){
     oCapa.classList.remove("oculto");
     oCapa.classList.add("capaVisible");
 
-    //todo mostrar la tabla de matricula
     oCapa.appendChild(tablaMatriculas());
 
 }
@@ -323,17 +326,33 @@ function limpiarCampos(oCapa){
 //--------------------------------------------------------
 function cargarSelectModificarProfesor(){
     var arrayProfesores=autoescuela.profesores;
+    //todo cargarSelectProfesor
+    //coger el select
+    //insertar option value=0 "Seleccione..."
+    //insertar option con profesores
+
+    //en un evento change:
+    //--Cargar datos
+    //--habilitar boton
+    //      oCapa.querySelector("input[type=button]").disabled = false;
+
 }
 
 function cargarSelectModificarCliente(){
+    var arrayClientes=autoescuela.clientes;
+    //todo cargarSelectCliente
 
 }
 
 function cargarSelectModificarVehiculo(){
+    var arrayVehiculos=autoescuela.vehiculos;
+    //todo cargarSelectVehiculo
 
 }
 
 function cargarSelectModificarMatricula(){
+    var arrayMatriculas=autoescuela.matriculas;
+    //todo cargarSelectMatricula
 
 }
 
@@ -523,15 +542,289 @@ function validarPersona(oCapa){
 
 
 function validarVehiculo(oCapa){
+    //sMatricula,sMarca,sModelo,sTipo
+    var bValido = true;
+    var sErrores = "";  //se almacenan aqui todos los errores
 
+    var oInputs=oCapa.querySelectorAll("input[type=text]");
+    //0-> matricula
+    //1-> marca
+    //2-> modelo
+    var oSelectTipo=oCapa.querySelector("select");
+
+
+    //Campo matricula
+    var sMatricula = oInputs[0].value.trim(); //sin espacios por delante ni por detras
+    //Campo corregido con trim
+    oInputs[0].value=oInputs[0].value.trim();
+
+    var oExpReg = /^\d{4}[a-zA-Z]{3}$/;
+
+    if(oExpReg.test(sMatricula) == false){
+        if(bValido){  //Si es el primero en fallar,coge el foco
+            bValido = false;
+            //Este camo obtiene el foco
+            oInputs[0].focus();
+        }
+
+        sErrores += "Matricula incorrecta\n";
+
+        //Marcar error
+        oInputs[0].classList.add("error");
+    }else{
+        //Desmarcar el error
+        oInputs[0].classList.remove("error");
+    }
+
+
+    //Campo marca
+    var sMarca = oInputs[1].value.trim(); //sin espacios por delante ni por detras
+    //Campo corregido con trim
+    oInputs[1].value=oInputs[1].value.trim();
+
+    var oExpReg2 = /^[\w\s]{3,20}$/;
+
+    if(oExpReg2.test(sMarca) == false){
+        if(bValido){  //Si es el primero en fallar,coge el foco
+            bValido = false;
+            //Este camo obtiene el foco
+            oInputs[1].focus();
+        }
+
+        sErrores += "Marca incorrecta\n";
+
+        //Marcar error
+        oInputs[1].classList.add("error");
+    }else{
+        //Desmarcar el error
+        oInputs[1].classList.remove("error");
+    }
+
+
+    //Campo modelo
+    var sModelo = oInputs[2].value.trim(); //sin espacios por delante ni por detras
+    //Campo corregido con trim
+    oInputs[2].value=oInputs[2].value.trim();
+
+    var oExpReg3 = /^[\w\s]{3,25}$/;
+
+    if(oExpReg3.test(sModelo) == false){
+        if(bValido){  //Si es el primero en fallar,coge el foco
+            bValido = false;
+            //Este camo obtiene el foco
+            oInputs[2].focus();
+        }
+
+        sErrores += "Modelo incorrecto\n";
+
+        //Marcar error
+        oInputs[2].classList.add("error");
+    }else{
+        //Desmarcar el error
+        oInputs[2].classList.remove("error");
+    }
+
+
+    //Campo Tipo
+    var sTipo = oSelectTipo.value; //sin espacios por delante ni por detras
+
+    if(sTipo=="0"){
+        if(bValido){  //Si es el primero en fallar,coge el foco
+            bValido = false;
+            //Este camo obtiene el foco
+            oSelectTipo.focus();
+        }
+
+        sErrores += "Seleccione un tipo de vehiculo\n";
+
+        //Marcar error
+        oSelectTipo.classList.add("error");
+    }else{
+        //Desmarcar el error
+        oSelectTipo.classList.remove("error");
+    }
+
+
+
+    //Resultado
+    if(bValido == false){
+        //Mostrar errores
+        alert(sErrores);
+    }
+
+    return bValido;
 }
 
 function validarClase(){
+    //Teorica -> fDuracion,dFecha,sHora,iAforo
+    //Practica -> fDuracion,dFecha,sHora,fTarifa_hora
+    var bValido = true;
+    var sErrores = "";  //se almacenan aqui todos los errores
 
+    var oCapa= document.getElementById("altaClase");
+    var oInputs=oCapa.querySelectorAll("input[type=text]");
+    //0-> Duracion     float
+    //1-> fecha        date   dd/mm/aaaa | d/m/yyyy   comprobarFecha(sFecha)
+    //2-> hora         string HH:MM  comprobarHora(sHora)
+    //3-> tarifa/hora  float
+    //4-> aforo        int
+
+
+    //Campo duracion
+    var sDuracion = oInputs[0].value.trim(); //sin espacios por delante ni por detras
+    //Campo corregido con trim
+    oInputs[0].value=oInputs[0].value.trim();
+
+
+    if(comprobarFloat(sDuracion)){
+        if(bValido){  //Si es el primero en fallar,coge el foco
+            bValido = false;
+            //Este camo obtiene el foco
+            oInputs[0].focus();
+        }
+
+        sErrores += "Duracion incorrecta\n";
+
+        //Marcar error
+        oInputs[0].classList.add("error");
+    }else{
+        //Desmarcar el error
+        oInputs[0].classList.remove("error");
+    }
+
+
+    //Campo fecha
+    var sFecha = oInputs[1].value.trim(); //sin espacios por delante ni por detras
+    //Campo corregido con trim
+    oInputs[1].value=oInputs[1].value.trim();
+
+    var oExpReg = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
+
+    if(oExpReg.test(sFecha) == false || !comprobarFecha(sFecha)){
+        if(bValido){  //Si es el primero en fallar,coge el foco
+            bValido = false;
+            //Este camo obtiene el foco
+            oInputs[1].focus();
+        }
+
+        sErrores += "Fecha incorrecta\n";
+
+        //Marcar error
+        oInputs[1].classList.add("error");
+    }else{
+        //Desmarcar el error
+        oInputs[1].classList.remove("error");
+    }
+
+
+
+    //Campo hora
+    var sHora = oInputs[2].value.trim(); //sin espacios por delante ni por detras
+    //Campo corregido con trim
+    oInputs[2].value=oInputs[2].value.trim();
+
+    var oExpReg2 = /^(((0|1)[0-9])|2[0-3]):[0-5][0-9]$/;
+
+    if(oExpReg2.test(sHora) == false){
+        if(bValido){  //Si es el primero en fallar,coge el foco
+            bValido = false;
+            //Este camo obtiene el foco
+            oInputs[2].focus();
+        }
+
+        sErrores += "Hora incorrecta (HH:MM)\n";
+
+        //Marcar error
+        oInputs[2].classList.add("error");
+    }else{
+        //Desmarcar el error
+        oInputs[2].classList.remove("error");
+    }
+
+    var sRadioTipo=frmClaseAlta.radioAltaClase.value;
+    if(sRadioTipo=="practica"){
+        //Campo tarifa/hora
+        var sTarifa = oInputs[3].value.trim(); //sin espacios por delante ni por detras
+        //Campo corregido con trim
+        oInputs[3].value=oInputs[3].value.trim();
+
+        if(comprobarFloat(sTarifa) ){
+            if(bValido){  //Si es el primero en fallar,coge el foco
+                bValido = false;
+                //Este camo obtiene el foco
+                oInputs[3].focus();
+            }
+
+            sErrores += "Tarifa incorrecta\n";
+
+            //Marcar error
+            oInputs[3].classList.add("error");
+        }else{
+            //Desmarcar el error
+            oInputs[3].classList.remove("error");
+        }
+    }else{
+        //Campo aforo
+        var sAforo = oInputs[4].value.trim(); //sin espacios por delante ni por detras
+        //Campo corregido con trim
+        oInputs[4].value=oInputs[4].value.trim();
+
+        var oExpReg3 = /^\d{1,3}$/;
+
+        if(oExpReg3.test(sAforo)){
+            if(bValido){  //Si es el primero en fallar,coge el foco
+                bValido = false;
+                //Este camo obtiene el foco
+                oInputs[4].focus();
+            }
+
+            sErrores += "Aforo incorrecto\n";
+
+            //Marcar error
+            oInputs[4].classList.add("error");
+        }else{
+            //Desmarcar el error
+            oInputs[4].classList.remove("error");
+        }
+    }
+
+    //Resultado
+    if(bValido == false){
+        //Mostrar errores
+        alert(sErrores);
+    }
+
+    return bValido;
 }
 
 function validarMatricula(oCapa){
+    //iAsistenciaExamen,fCantidadAbonada,bExPracticoPass,bExTeoricoPass,dFecha,sIdentificador,iNumeroPracticas,fPrecio,sTipo
+    var bValido = true;
+    var sErrores = "";  //se almacenan aqui todos los errores
 
+    var oInputs=oCapa.querySelectorAll("input[type=text]");
+    //0-> N asistencas al examen      int
+    //1-> cantidad abonada            float
+    //2-> fecha                       date   dd/mm/aaaa | d/m/yyyy   comprobarFecha(sFecha)
+    //3-> N practicas                 int
+    //4-> identificador               string  333333aaaa
+    //5-> precio                      float
+    var oSelects=oCapa.querySelector("select");
+    //0-> Examen practico aprobado    "si","no" / "0"  fallo
+    //1-> Examen teorico aprobado     "si","no" / "0"  fallo
+    //2-> Tipo                        string
+
+    //todo validar matricula
+
+
+
+    //Resultado
+    if(bValido == false){
+        //Mostrar errores
+        alert(sErrores);
+    }
+
+    return bValido;
 }
 
 //--------------------------------------------------------
@@ -546,16 +839,54 @@ function borrarTodosOption(oSelect){
     }
 }
 
+function comprobarFloat(sNumero){
+    var bNumero=false;
+    var fNumero=parseFloat(sNumero);
 
-function fechaStringADate(sFecha){
+    if(!isNaN(fNumero)){
+        bNumero=true;
+    }
+
+    return bNumero;
+}
+
+
+function comprobarFecha(sFecha){ //devuelve true si la fecha es correcta
+    var bRes=false;
+
     // "DD/MM/YYYY"
     var arrayDatos=sFecha.slice("/");
 
-    var sDia=arrayDatos[0];
-    var sMes=arrayDatos[1];
-    var sAnyo=arrayDatos[2];
+    var iDia=parseInt(arrayDatos[0]);
+    var iMes=parseInt(arrayDatos[1])-1;
+    var iAnyo=parseInt(arrayDatos[2]);
 
-    var dFecha=new Date(sAnyo,sMes,sDia);
+    if(diasDelMes(iMes,iAnyo) >= iDia){
+        bRes=true;
+    }
+
+    return bRes;
+}
+
+function diasDelMes(iMes, iAnyo){ //devuelve los dias del mes, v2.0
+    var arrayDias=Array(31,28,31,30,31,30,31,31,30,31,30,31);
+    var iDias=arrayDias[iMes];
+
+    if (iMes == 1 && iAnyo % 4 == 0 && (iAnyo % 100 != 0 || iAnyo % 400 == 0))
+        iDias=29;
+
+    return iDias;
+}
+
+function fechaStringADate(sFecha){
+    // "DD/MM/YYYY"
+    var arrayDatos=sFecha.split("/");
+
+    var iDia=parseInt(arrayDatos[0]);
+    var iMes=parseInt(arrayDatos[1])-1;
+    var iAnyo=parseInt(arrayDatos[2]);
+
+    var dFecha=new Date(iAnyo,iMes,iDia);
 
     return dFecha;
 
@@ -563,11 +894,11 @@ function fechaStringADate(sFecha){
 
 function cargarDatosIniciales(){
     var sCif = oXML.getElementsByTagName("cif")[0].firstChild.nodeValue;
-    var sCalle= oXML.getElementsByTagName("calle")[0].firstChild.nodeValue;
+    var sDireccion= oXML.getElementsByTagName("direccion")[0].firstChild.nodeValue;
     var sNombre= oXML.getElementsByTagName("nombre")[0].firstChild.nodeValue;
     var iTelefono= parseInt(oXML.getElementsByTagName("telefono")[0].firstChild.nodeValue);
 
-    autoescuela=new Autoescuela(sCif,sCalle,sNombre,iTelefono);
+    autoescuela=new Autoescuela(sCif,sDireccion,sNombre,iTelefono);
 
     //introducir profesores
     var oProfesores=oXML.getElementsByTagName("profesor");
@@ -647,7 +978,8 @@ function cargarDatosIniciales(){
     }
 
     //introducir vehiculos
-    var oVehiculos=oXML.getElementsByTagName("vehiculo");
+    var oVehiculosContenedor=oXML.getElementsByTagName("vehiculos")[0];
+    var oVehiculos=oVehiculosContenedor.getElementsByTagName("vehiculo");
 
     for(var i=0;i<oVehiculos.length;i++) {
         var oVehiculoActual = oVehiculos[i];
@@ -665,7 +997,8 @@ function cargarDatosIniciales(){
 
 
     //introducir matriculas
-    var oMatriculas=oXML.getElementsByTagName("matricula");
+    var oMatriculasContenedor=oXML.getElementsByTagName("matriculas")[0];
+    var oMatriculas=oMatriculasContenedor.getElementsByTagName("matricula");
 
     for(var i=0;i<oMatriculas.length;i++) {
         var oMatriculaActual = oMatriculas[i];
@@ -691,7 +1024,7 @@ function cargarDatosIniciales(){
 
         var oMatricula=new Matricula(iAsistenciaExamen,fCantidadAbonada,bExPracticoPass,bExTeoricoPass,dFecha,sIdentificador,iNumeroPracticas,fPrecio,sTipo);
 
-        autoescuela.altaVehiculo(oMatricula);
+        autoescuela.altaMatricula(oMatricula);
 
     }
 
@@ -778,6 +1111,11 @@ function tablaClientes(){
     celda6.appendChild(oTexto6);
     fila.appendChild(celda6);
 
+    var celda7 = document.createElement("th");
+    var oTexto7=document.createTextNode("Num Registro");
+    celda7.appendChild(oTexto7);
+    fila.appendChild(celda7);
+
     oTabla.appendChild(fila);
 
     for(var i=0;i<autoescuela.clientes.length;i++){
@@ -835,6 +1173,14 @@ function tablaClases(){
     var oTexto3=document.createTextNode("Hora");
     celda3.appendChild(oTexto3);
     fila.appendChild(celda3);
+    var celda4 = document.createElement("th");
+    var oTexto4=document.createTextNode("Tarifa/Hora");
+    celda4.appendChild(oTexto4);
+    fila.appendChild(celda4);
+    var celda5 = document.createElement("th");
+    var oTexto5=document.createTextNode("Aforo");
+    celda5.appendChild(oTexto5);
+    fila.appendChild(celda5);
 
     oTabla.appendChild(fila);
 
@@ -848,6 +1194,7 @@ function tablaClases(){
 //---------funcion tablasMatriculas
 function tablaMatriculas(){
     var oTabla=document.createElement("Table");
+    //oTabla.classList.add("table-bordered");
 
     var fila = document.createElement("tr");
     var celda = document.createElement("th");
@@ -876,7 +1223,7 @@ function tablaMatriculas(){
     fila.appendChild(celda6);
     var celda7 = document.createElement("th");
     var oTexto7=document.createTextNode("NumeroPracticas");
-    celd7.appendChild(oTexto7);
+    celda7.appendChild(oTexto7);
     fila.appendChild(celda7);
     var celda8 = document.createElement("th");
     var oTexto8=document.createTextNode("Precio");

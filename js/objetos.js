@@ -57,15 +57,16 @@ Matricula.prototype.fila= function () {
     celda2.appendChild(oTexto2);
     fila.appendChild(celda2);
     var celda3 = document.createElement("td");
-    var oTexto3=document.createTextNode(this.exPracticoPass);
+    var oTexto3=document.createTextNode(this.exPracticoPass?"Si":"No");
     celda3.appendChild(oTexto3);
     fila.appendChild(celda3);
     var celda4 = document.createElement("td");
-    var oTexto4=document.createTextNode(this.exTeoricoPass);
+    var oTexto4=document.createTextNode(this.exTeoricoPass?"Si":"No");
     celda4.appendChild(oTexto4);
     fila.appendChild(celda4);
     var celda5 = document.createElement("td");
-    var oTexto5=document.createTextNode(this.fecha);
+    var sFecha=this.fecha.getDate()+"/"+(this.fecha.getMonth()+1)+"/"+this.fecha.getFullYear();
+    var oTexto5=document.createTextNode(sFecha);
     celda5.appendChild(oTexto5);
     fila.appendChild(celda5);
     var celda6 = document.createElement("td");
@@ -74,7 +75,7 @@ Matricula.prototype.fila= function () {
     fila.appendChild(celda6);
     var celda7 = document.createElement("td");
     var oTexto7=document.createTextNode(this.numeroPracticas);
-    celd7.appendChild(oTexto7);
+    celda7.appendChild(oTexto7);
     fila.appendChild(celda7);
     var celda8 = document.createElement("td");
     var oTexto8=document.createTextNode(this.precio);
@@ -220,7 +221,7 @@ Cliente.prototype.fila= function () {
     fila.appendChild(celda6);
     var celda7 = document.createElement("td");
     var oTexto7=document.createTextNode(this.numeroRegistro);
-    celd7.appendChild(oTexto7);
+    celda7.appendChild(oTexto7);
     fila.appendChild(celda7);
 
     return fila;
@@ -243,7 +244,8 @@ Clases.prototype.fila= function () {
     celda.appendChild(oTexto);
     fila.appendChild(celda);
     var celda2 = document.createElement("td");
-    var oTexto2=document.createTextNode(this.fecha);
+    var sFecha=this.fecha.getDate()+"/"+(this.fecha.getMonth()+1)+"/"+this.fecha.getFullYear();
+    var oTexto2=document.createTextNode(sFecha);
     celda2.appendChild(oTexto2);
     fila.appendChild(celda2);
     var celda3 = document.createElement("td");
@@ -271,7 +273,8 @@ Practica.prototype.fila= function () {
     celda.appendChild(oTexto);
     fila.appendChild(celda);
     var celda2 = document.createElement("td");
-    var oTexto2=document.createTextNode(this.fecha);
+    var sFecha=this.fecha.getDate()+"/"+(this.fecha.getMonth()+1)+"/"+this.fecha.getFullYear();
+    var oTexto2=document.createTextNode(sFecha);
     celda2.appendChild(oTexto2);
     fila.appendChild(celda2);
     var celda3 = document.createElement("td");
@@ -282,6 +285,10 @@ Practica.prototype.fila= function () {
     var oTexto4=document.createTextNode(this.tarifa_hora);
     celda4.appendChild(oTexto4);
     fila.appendChild(celda4);
+    var celda5 = document.createElement("td");
+    var oTexto5=document.createTextNode("-");
+    celda5.appendChild(oTexto5);
+    fila.appendChild(celda5);
     
 
     return fila;
@@ -305,7 +312,8 @@ Teorica.prototype.fila= function () {
     celda.appendChild(oTexto);
     fila.appendChild(celda);
     var celda2 = document.createElement("td");
-    var oTexto2=document.createTextNode(this.fecha);
+    var sFecha=this.fecha.getDate()+"/"+(this.fecha.getMonth()+1)+"/"+this.fecha.getFullYear();
+    var oTexto2=document.createTextNode(sFecha);
     celda2.appendChild(oTexto2);
     fila.appendChild(celda2);
     var celda3 = document.createElement("td");
@@ -313,9 +321,13 @@ Teorica.prototype.fila= function () {
     celda3.appendChild(oTexto3);
     fila.appendChild(celda3);
     var celda4 = document.createElement("td");
-    var oTexto4=document.createTextNode(this.aforo);
+    var oTexto4=document.createTextNode("-");
     celda4.appendChild(oTexto4);
     fila.appendChild(celda4);
+    var celda5 = document.createElement("td");
+    var oTexto5=document.createTextNode(this.aforo);
+    celda5.appendChild(oTexto5);
+    fila.appendChild(celda5);
 
 
     return fila;
@@ -406,30 +418,55 @@ Autoescuela.prototype.buscaPersona=function(sDni) {
 
     return bEncontrado;
 }
+Autoescuela.prototype.buscaProfesor=function(sDni) {
+    var arrayProfesores = this.profesores;
+    var oProfesor=null;
 
-Autoescuela.prototype.buscaVehiculo=function(sMatricula) {
-    var arrayVehiculos = this.vehiculos;
-    var bEncontrado=false;
-
-    for(var i=0;i<arrayVehiculos.length;i++) {
-        if (this.arrayVehiculos[i].matricula == sMatricula) {
-            bEncontrado=true;
+    for(var i=0;i<arrayProfesores.length;i++) {
+        if (this.arrayProfesores[i].dni == sDni) {
+            oProfesor=this.arrayProfesores[i];
         }
     }
 
-    return bEncontrado;
+    return oProfesor;
+}
+
+Autoescuela.prototype.buscaCliente=function(sDni) {
+    var arrayClientes = this.clientes;
+    var oCliente=null;
+
+    for(var i=0;i<arrayClientes.length;i++) {
+        if (this.arrayClientes[i].dni == sDni) {
+            oCliente=this.arrayClientes[i];
+        }
+    }
+
+    return oCliente;
+}
+
+Autoescuela.prototype.buscaVehiculo=function(sMatricula) {
+    var arrayVehiculos = this.vehiculos;
+    var oVehiculo=null;
+
+    for(var i=0;i<arrayVehiculos.length;i++) {
+        if (this.arrayVehiculos[i].matricula == sMatricula) {
+            oVehiculo=this.arrayVehiculos[i];
+        }
+    }
+
+    return oVehiculo;
 }
 
 Autoescuela.prototype.buscaMatricula=function(sIdentificador) {
     var arrayMatriculas = this.matriculas;
-    var bEncontrado=false;
+    var oMatricula=null;
 
     for(var i=0;i<arrayMatriculas.length;i++) {
         if (this.arrayMatriculas[i].identificador == sIdentificador) {
-            bEncontrado=true;
+            oMatricula=true;
         }
     }
 
-    return bEncontrado;
+    return oMatricula;
 }
 
