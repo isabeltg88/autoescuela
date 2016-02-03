@@ -411,7 +411,7 @@ Autoescuela.prototype.buscaPersona=function(sDni) {
     var bEncontrado=false;
 
     for(var i=0;i<arrayPersonas.length;i++) {
-        if (this.arrayPersonas[i].dni == sDni) {
+        if (arrayPersonas[i].dni == sDni) {
             bEncontrado=true;
         }
     }
@@ -423,8 +423,8 @@ Autoescuela.prototype.buscaProfesor=function(sDni) {
     var oProfesor=null;
 
     for(var i=0;i<arrayProfesores.length;i++) {
-        if (this.arrayProfesores[i].dni == sDni) {
-            oProfesor=this.arrayProfesores[i];
+        if (arrayProfesores[i].dni == sDni) {
+            oProfesor=arrayProfesores[i];
         }
     }
 
@@ -436,8 +436,8 @@ Autoescuela.prototype.buscaCliente=function(sDni) {
     var oCliente=null;
 
     for(var i=0;i<arrayClientes.length;i++) {
-        if (this.arrayClientes[i].dni == sDni) {
-            oCliente=this.arrayClientes[i];
+        if (arrayClientes[i].dni == sDni) {
+            oCliente=arrayClientes[i];
         }
     }
 
@@ -449,8 +449,8 @@ Autoescuela.prototype.buscaVehiculo=function(sMatricula) {
     var oVehiculo=null;
 
     for(var i=0;i<arrayVehiculos.length;i++) {
-        if (this.arrayVehiculos[i].matricula == sMatricula) {
-            oVehiculo=this.arrayVehiculos[i];
+        if (arrayVehiculos[i].matricula == sMatricula) {
+            oVehiculo=arrayVehiculos[i];
         }
     }
 
@@ -462,8 +462,8 @@ Autoescuela.prototype.buscaMatricula=function(sIdentificador) {
     var oMatricula=null;
 
     for(var i=0;i<arrayMatriculas.length;i++) {
-        if (this.arrayMatriculas[i].identificador == sIdentificador) {
-            oMatricula=true;
+        if (arrayMatriculas[i].identificador == sIdentificador) {
+            oMatricula=arrayMatriculas[i];
         }
     }
 

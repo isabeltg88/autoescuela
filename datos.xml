@@ -8,19 +8,19 @@
             <matricula>1111AAA</matricula>
             <marca>Ford</marca>
             <modelo>Fiesta</modelo>
-            <tipo>Coche</tipo>
+            <tipo>coche</tipo>
         </vehiculo>
         <vehiculo>
             <matricula>2222CCC</matricula>
             <marca>Peugeot</marca>
             <modelo>Blueline</modelo>
-            <tipo>Moto</tipo>
+            <tipo>moto</tipo>
         </vehiculo>
         <vehiculo>
             <matricula>3333CCC</matricula>
             <marca>Chevrolet</marca>
             <modelo>Matiz</modelo>
-            <tipo>Coche</tipo>
+            <tipo>coche</tipo>
         </vehiculo>
     </vehiculos>
     <profesores>

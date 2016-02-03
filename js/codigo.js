@@ -68,6 +68,11 @@ function inicio(){
 
 
 
+    //Eventos en los select
+    document.getElementById("sltModificarPro").addEventListener("change",cambiaSelectProfesor,false);
+    document.getElementById("sltModificarCli").addEventListener("change",cambiaSelectCliente,false);
+    document.getElementById("sltModificarVehi").addEventListener("change",cambiaSelectVehiculo,false);
+    document.getElementById("sltModificarMat").addEventListener("change",cambiaSelectMatricula,false);
 }
 
 //--------------------------------------------------------
@@ -326,34 +331,107 @@ function limpiarCampos(oCapa){
 //--------------------------------------------------------
 function cargarSelectModificarProfesor(){
     var arrayProfesores=autoescuela.profesores;
-    //todo cargarSelectProfesor
+
     //coger el select
     //insertar option value=0 "Seleccione..."
     //insertar option con profesores
 
-    //en un evento change:
-    //--Cargar datos
-    //--habilitar boton
-    //      oCapa.querySelector("input[type=button]").disabled = false;
+    var oSelect = document.getElementById("sltModificarPro");
+
+    borrarTodosOption(oSelect);
+
+    var oOption= document.createElement("OPTION");
+    oOption.value="0";
+    var oTexto= document.createTextNode("Seleccione un profesor");
+    oOption.appendChild(oTexto);
+    oSelect.appendChild(oOption);
+
+    for(var i=0;i<arrayProfesores.length;i++){
+        var oProfesor=arrayProfesores[i];
+
+        var oOption= document.createElement("OPTION");
+        oOption.value=oProfesor.dni;
+        var oTexto= document.createTextNode(oProfesor.dni+" -"+oProfesor.nombre);
+        oOption.appendChild(oTexto);
+        oSelect.appendChild(oOption);
+
+    }
 
 }
 
 function cargarSelectModificarCliente(){
     var arrayClientes=autoescuela.clientes;
-    //todo cargarSelectCliente
 
+    var oSelect = document.getElementById("sltModificarCli");
+
+    borrarTodosOption(oSelect);
+
+    var oOption= document.createElement("OPTION");
+    oOption.value="0";
+    var oTexto= document.createTextNode("Seleccione un cliente");
+    oOption.appendChild(oTexto);
+    oSelect.appendChild(oOption);
+
+    for(var i=0;i<arrayClientes.length;i++){
+        var oCliente=arrayClientes[i];
+
+        var oOption= document.createElement("OPTION");
+        oOption.value=oCliente.dni;
+        var oTexto= document.createTextNode(oCliente.dni+" -"+oCliente.nombre);
+        oOption.appendChild(oTexto);
+        oSelect.appendChild(oOption);
+
+    }
 }
 
 function cargarSelectModificarVehiculo(){
     var arrayVehiculos=autoescuela.vehiculos;
-    //todo cargarSelectVehiculo
 
+    var oSelect = document.getElementById("sltModificarVehi");
+
+    borrarTodosOption(oSelect);
+
+    var oOption= document.createElement("OPTION");
+    oOption.value="0";
+    var oTexto= document.createTextNode("Seleccione un vehiculo");
+    oOption.appendChild(oTexto);
+    oSelect.appendChild(oOption);
+
+    for(var i=0;i<arrayVehiculos.length;i++){
+        var oVehiculo=arrayVehiculos[i];
+
+        var oOption= document.createElement("OPTION");
+        oOption.value=oVehiculo.matricula;
+        var oTexto= document.createTextNode(oVehiculo.matricula);
+        oOption.appendChild(oTexto);
+        oSelect.appendChild(oOption);
+
+    }
 }
 
 function cargarSelectModificarMatricula(){
     var arrayMatriculas=autoescuela.matriculas;
-    //todo cargarSelectMatricula
 
+    var oSelect = document.getElementById("sltModificarMat");
+
+    borrarTodosOption(oSelect);
+
+    var oOption= document.createElement("OPTION");
+    oOption.value="0";
+    var oTexto= document.createTextNode("Seleccione una matricula");
+    oOption.appendChild(oTexto);
+    oSelect.appendChild(oOption);
+
+    for(var i=0;i<arrayMatriculas.length;i++){
+        var oMatricula=arrayMatriculas[i];
+
+        var oOption= document.createElement("OPTION");
+        oOption.value=oMatricula.identificador;
+        var oTexto= document.createTextNode(oMatricula.identificador);
+        oOption.appendChild(oTexto);
+        oSelect.appendChild(oOption);
+
+    }
 }
 
 //--------------------------------------------------------
@@ -568,6 +646,17 @@ function validarVehiculo(oCapa){
         }
 
         sErrores += "Matricula incorrecta\n";
+
+        //Marcar error
+        oInputs[0].classList.add("error");
+    }else if(autoescuela.buscaVehiculo(sMatricula)!=null){
+        if(bValido){  //Si es el primero en fallar,coge el foco
+            bValido = false;
+            //Este camo obtiene el foco
+            oInputs[0].focus();
+        }
+
+        sErrores += "El vehiculo ya existe\n";
 
         //Marcar error
         oInputs[0].classList.add("error");
@@ -814,7 +903,221 @@ function validarMatricula(oCapa){
     //1-> Examen teorico aprobado     "si","no" / "0"  fallo
     //2-> Tipo                        string
 
-    //todo validar matricula
+
+    //Campo Asistencias
+    var sAsistenciasExamen = oInputs[0].value.trim(); //sin espacios por delante ni por detras
+    //Campo corregido con trim
+    oInputs[0].value=oInputs[0].value.trim();
+
+    var oExpReg = /^\d{1,3}$/;
+
+    if(oExpReg.test(sAsistenciasExamen)){
+        if(bValido){  //Si es el primero en fallar,coge el foco
+            bValido = false;
+            //Este camo obtiene el foco
+            oInputs[0].focus();
+        }
+
+        sErrores += "Numero de asistencias al examen incorrecto\n";
+
+        //Marcar error
+        oInputs[0].classList.add("error");
+    }else{
+        //Desmarcar el error
+        oInputs[0].classList.remove("error");
+    }
+
+
+    //Campo cantidad abonada
+    var sCantidadAbonada = oInputs[1].value.trim(); //sin espacios por delante ni por detras
+    //Campo corregido con trim
+    oInputs[1].value=oInputs[1].value.trim();
+
+    if(comprobarFloat(sCantidadAbonada) ){
+        if(bValido){  //Si es el primero en fallar,coge el foco
+            bValido = false;
+            //Este camo obtiene el foco
+            oInputs[1].focus();
+        }
+
+        sErrores += "Cantidad abonada incorrecta\n";
+
+        //Marcar error
+        oInputs[1].classList.add("error");
+    }else{
+        //Desmarcar el error
+        oInputs[1].classList.remove("error");
+    }
+
+
+    //Campo fecha
+    var sFecha = oInputs[2].value.trim(); //sin espacios por delante ni por detras
+    //Campo corregido con trim
+    oInputs[2].value=oInputs[2].value.trim();
+
+    var oExpReg2 = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
+
+    if(oExpReg2.test(sFecha) == false || !comprobarFecha(sFecha)){
+        if(bValido){  //Si es el primero en fallar,coge el foco
+            bValido = false;
+            //Este camo obtiene el foco
+            oInputs[2].focus();
+        }
+
+        sErrores += "Fecha incorrecta\n";
+
+        //Marcar error
+        oInputs[2].classList.add("error");
+    }else{
+        //Desmarcar el error
+        oInputs[2].classList.remove("error");
+    }
+
+
+
+    //Campo Numero practicas
+    var sNPracticas = oInputs[3].value.trim(); //sin espacios por delante ni por detras
+    //Campo corregido con trim
+    oInputs[3].value=oInputs[3].value.trim();
+
+    var oExpReg3 = /^\d{1,3}$/;
+
+    if(oExpReg3.test(sNPracticas)){
+        if(bValido){  //Si es el primero en fallar,coge el foco
+            bValido = false;
+            //Este camo obtiene el foco
+            oInputs[3].focus();
+        }
+
+        sErrores += "Numero de practicas incorrecto\n";
+
+        //Marcar error
+        oInputs[3].classList.add("error");
+    }else{
+        //Desmarcar el error
+        oInputs[3].classList.remove("error");
+    }
+
+
+
+    //Campo identificador
+    var sIdentificador = oInputs[4].value.trim(); //sin espacios por delante ni por detras
+    //Campo corregido con trim
+    oInputs[4].value=oInputs[4].value.trim();
+
+    var oExpReg4 = /^\d{1,6}[a-zA-Z]{1,4}$/;
+
+    if(oExpReg4.test(sIdentificador) == false){
+        if(bValido){  //Si es el primero en fallar,coge el foco
+            bValido = false;
+            //Este camo obtiene el foco
+            oInputs[4].focus();
+        }
+
+        sErrores += "Identificador incorrecto\n";
+
+        //Marcar error
+        oInputs[4].classList.add("error");
+    }else if(autoescuela.buscaMatricula(sIdentificador)!=null){
+        if(bValido){  //Si es el primero en fallar,coge el foco
+            bValido = false;
+            //Este camo obtiene el foco
+            oInputs[4].focus();
+        }
+
+        sErrores += "La matricula ya existe\n";
+
+        //Marcar error
+        oInputs[4].classList.add("error");
+    }else{
+        //Desmarcar el error
+        oInputs[4].classList.remove("error");
+    }
+
+
+
+    //Campo precio
+    var sPrecio = oInputs[5].value.trim(); //sin espacios por delante ni por detras
+    //Campo corregido con trim
+    oInputs[5].value=oInputs[5].value.trim();
+
+    if(comprobarFloat(sPrecio) ){
+        if(bValido){  //Si es el primero en fallar,coge el foco
+            bValido = false;
+            //Este camo obtiene el foco
+            oInputs[5].focus();
+        }
+
+        sErrores += "Precio incorrecto\n";
+
+        //Marcar error
+        oInputs[5].classList.add("error");
+    }else{
+        //Desmarcar el error
+        oInputs[5].classList.remove("error");
+    }
+
+
+    //Campo Examen Practico aprobado
+    var sExamenPracticoAprob = oSelects[0].value; //sin espacios por delante ni por detras
+
+    if(sExamenPracticoAprob=="0"){
+        if(bValido){  //Si es el primero en fallar,coge el foco
+            bValido = false;
+            //Este camo obtiene el foco
+            oSelects[0].focus();
+        }
+
+        sErrores += "Seleccione una opcion de Examen Practico Arpobado\n";
+
+        //Marcar error
+        oSelects[0].classList.add("error");
+    }else{
+        //Desmarcar el error
+        oSelects[0].classList.remove("error");
+    }
+
+
+
+    //Campo Examen Teorico aprobado
+    var sExamenTeoricoAprob = oSelects[1].value; //sin espacios por delante ni por detras
+
+    if(sExamenTeoricoAprob=="0"){
+        if(bValido){  //Si es el primero en fallar,coge el foco
+            bValido = false;
+            //Este camo obtiene el foco
+            oSelects[1].focus();
+        }
+
+        sErrores += "Seleccione una opcion de Examen Teorico Arpobado\n";
+
+        //Marcar error
+        oSelects[1].classList.add("error");
+    }else{
+        //Desmarcar el error
+        oSelects[1].classList.remove("error");
+    }
+
+
+
+    //Campo Tipo
+    var sTipo = oSelects[2].value; //sin espacios por delante ni por detras
+
+    if(sTipo=="0"){
+        if(bValido){  //Si es el primero en fallar,coge el foco
+            bValido = false;
+            //Este camo obtiene el foco
+            oSelects[2].focus();
+        }
+
+        sErrores += "Seleccione una opcion de Tipo de matricula\n";
+
+        //Marcar error
+        oSelects[2].classList.add("error");
+    }else{
+        //Desmarcar el error
+        oSelects[2].classList.remove("error");
+    }
 
 
 
@@ -825,6 +1128,156 @@ function validarMatricula(oCapa){
     }
 
     return bValido;
+}
+
+
+//--------------------------------------------------------
+//----- Eventos change cargaSelect -----------------------
+//--------------------------------------------------------
+
+function cambiaSelectProfesor(){
+    //en un evento change:
+    //--Cargar datos
+    //--habilitar boton
+    //      oCapa.querySelector("input[type=button]").disabled = false;
+
+    //Si se elige el option 0
+    //--limpiarCampos(oCapa)
+    //--deshabilitar el boton
+
+    var oSelect = document.getElementById("sltModificarPro");
+    var oCapa=document.getElementById("modificarProfesor");
+
+    var sValorSelect = oSelect.value;
+
+    if(sValorSelect=="0"){
+        limpiarCampos(oCapa);
+        oCapa.querySelector("input[type=button]").disabled = true;
+    }else{
+        var oProfesor = autoescuela.buscaProfesor(sValorSelect);
+
+        var oInputs=oCapa.querySelectorAll("input[type=text]");
+
+        //Campo nombre
+        oInputs[0].value=oProfesor.nombre;
+        //Campo apellidos
+        oInputs[1].value=oProfesor.apellidos;
+        //Campo dni
+        oInputs[2].value=oProfesor.dni;
+        //Campo email
+        oInputs[3].value=oProfesor.email;
+        //Campo direccion
+        oInputs[4].value=oProfesor.direccion;
+        //Campo telefono
+        oInputs[5].value=oProfesor.telefono;
+
+
+        oCapa.querySelector("input[type=button]").disabled = false;
+    }
+
+}
+
+function cambiaSelectCliente(){
+    var oSelect = document.getElementById("sltModificarCli");
+
+    var oCapa=document.getElementById("modificarCliente");
+
+    var sValorSelect = oSelect.value;
+
+    if(sValorSelect=="0"){
+        limpiarCampos(oCapa);
+        oCapa.querySelector("input[type=button]").disabled = true;
+    }else{
+        var oCliente = autoescuela.buscaCliente(sValorSelect);
+
+        var oInputs=oCapa.querySelectorAll("input[type=text]");
+
+        //Campo nombre
+        oInputs[0].value=oCliente.nombre;
+        //Campo apellidos
+        oInputs[1].value=oCliente.apellidos;
+        //Campo dni
+        oInputs[2].value=oCliente.dni;
+        //Campo email
+        oInputs[3].value=oCliente.email;
+        //Campo direccion
+        oInputs[4].value=oCliente.direccion;
+        //Campo telefono
+        oInputs[5].value=oCliente.telefono;
+
+
+        oCapa.querySelector("input[type=button]").disabled = false;
+    }
+}
+
+function cambiaSelectVehiculo(){
+    var oSelect = document.getElementById("sltModificarVehi");
+
+    var oCapa=document.getElementById("modificarVehiculo");
+
+    var sValorSelect = oSelect.value;
+
+    if(sValorSelect=="0"){
+        limpiarCampos(oCapa);
+        oCapa.querySelector("input[type=button]").disabled = true;
+    }else{
+        var oVehiculo = autoescuela.buscaVehiculo(sValorSelect);
+
+        var oInputs=oCapa.querySelectorAll("input[type=text]");
+        var oSelectTipo=oCapa.querySelectorAll("select")[1];
+
+        //Campo matricula
+        oInputs[0].value=oVehiculo.matricula;
+        //Campo marca
+        oInputs[1].value=oVehiculo.marca;
+        //Campo modelo
+        oInputs[2].value=oVehiculo.modelo;
+        //Campo Tipo
+        oSelectTipo.value=oVehiculo.tipo;
+
+        oCapa.querySelector("input[type=button]").disabled = false;
+    }
+}
+
+function cambiaSelectMatricula(){
+    var oSelect = document.getElementById("sltModificarMat");
+
+    var oCapa=document.getElementById("modificarMatricula");
+
+    var sValorSelect = oSelect.value;
+
+    if(sValorSelect=="0"){
+        limpiarCampos(oCapa);
+        oCapa.querySelector("input[type=button]").disabled = true;
+    }else{
+        var oMatricula = autoescuela.buscaMatricula(sValorSelect);
+
+        var oInputs=oCapa.querySelectorAll("input[type=text]");
+        var oSelects=oCapa.querySelectorAll("select");
+
+        //Campo Asistencias
+        oInputs[0].value=oMatricula.asistenciaExamen;
+        //Campo cantidad abonada
+        oInputs[1].value=oMatricula.cantidadAbonada;
+        //Campo fecha
+        var sFecha=oMatricula.fecha.getDate()+"/"+(oMatricula.fecha.getMonth()+1)+"/"+oMatricula.fecha.getFullYear();
+        oInputs[2].value=sFecha;
+        //Campo Numero practicas
+        oInputs[3].value=oMatricula.numeroPracticas;
+        //Campo identificador
+        oInputs[4].value=oMatricula.identificador;
+        //Campo precio
+        oInputs[5].value=oMatricula.precio;
+        //Campo Examen Practico aprobado
+        oSelects[1].value=oMatricula.exPracticoPass?"si":"no";
+        //Campo Examen Teorico aprobado
+        oSelects[2].value=oMatricula.exTeoricoPass?"si":"no";
+        //Campo Tipo
+        oSelects[3].value=oMatricula.tipo;
+
+
+        oCapa.querySelector("input[type=button]").disabled = false;
+    }
 }
 
 //--------------------------------------------------------
@@ -861,8 +1314,12 @@ function comprobarFecha(sFecha){ //devuelve true si la fecha es correcta
     var iMes=parseInt(arrayDatos[1])-1;
     var iAnyo=parseInt(arrayDatos[2]);
 
-    if(diasDelMes(iMes,iAnyo) >= iDia){
-        bRes=true;
+    if(iMes>=0 && iMes<=11) {
+        if(iAnyo>=0) {
+            if (diasDelMes(iMes, iAnyo) >= iDia && iDia > 0) {
+                bRes = true;
+            }
+        }
     }
 
     return bRes;
