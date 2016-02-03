@@ -135,6 +135,8 @@ function mostrarModificarProfesor(){
     oCapa.classList.remove("oculto");
     oCapa.classList.add("capaVisible");
 
+    oCapa.querySelector("input[type=button]").disabled = true;
+
     cargarSelectModificarProfesor();
 }
 function mostrarListadoProfesor(){
@@ -165,6 +167,8 @@ function mostrarModificarCliente(){
     limpiarCampos(oCapa);
     oCapa.classList.remove("oculto");
     oCapa.classList.add("capaVisible");
+
+    oCapa.querySelector("input[type=button]").disabled = true;
 
     cargarSelectModificarCliente();
 }
@@ -197,6 +201,8 @@ function mostrarModificarVehiculo(){
     limpiarCampos(oCapa);
     oCapa.classList.remove("oculto");
     oCapa.classList.add("capaVisible");
+
+    oCapa.querySelector("input[type=button]").disabled = true;
 
     cargarSelectModificarVehiculo();
 }
@@ -251,6 +257,8 @@ function mostrarModificarMatricula(){
     limpiarCampos(oCapa);
     oCapa.classList.remove("oculto");
     oCapa.classList.add("capaVisible");
+
+    oCapa.querySelector("input[type=button]").disabled = true;
 
     cargarSelectModificarMatricula();
 }
@@ -322,6 +330,11 @@ function cargarSelectModificarProfesor(){
     //coger el select
     //insertar option value=0 "Seleccione..."
     //insertar option con profesores
+
+    //en un evento change:
+    //--Cargar datos
+    //--habilitar boton
+    //      oCapa.querySelector("input[type=button]").disabled = false;
 
 }
 
