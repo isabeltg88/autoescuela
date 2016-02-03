@@ -65,7 +65,15 @@ function inicio(){
     //document.frmClaseAlta.radioAltaClase.addEventListener("change",mostrarTipoClase,false);
 
     //Eventos de los botones
-
+    document.getElementById("btnEnviarAltaProf").addEventListener("click",insertaProfesor,false);
+    document.getElementById("btnEnviarModificarProf").addEventListener("click",modificarProfesor,false);
+    document.getElementById("btnEnviarAltaCli").addEventListener("click",insertaCliente,false);
+    document.getElementById("btnEnviarModificarCli").addEventListener("click",modificarCliente,false);
+    document.getElementById("btnEnviarAltaVehi").addEventListener("click",insertaVehiculo,false);
+    document.getElementById("btnEnviarModificarVehi").addEventListener("click",modificarVehiculo,false);
+    document.getElementById("btnEnviarAltaCla").addEventListener("click",insertaClase,false);
+    document.getElementById("btnEnviarAltaMat").addEventListener("click",insertaMatricula,false);
+    document.getElementById("btnEnviarModificarMat").addEventListener("click",modificarMatricula,false);
 
 
     //Eventos en los select
@@ -613,6 +621,33 @@ function validarPersona(oCapa){
     if(bValido == false){
         //Mostrar errores
         alert(sErrores);
+    }else{
+        if(oCapa.id=="altaProfesor"){
+            var sIdProfe=iIdProfesor+"P";
+            iIdProfesor++;
+            var oProfesor=new Profesor(sApellidos,sDireccion,sDni,sEmail,sNombre,sTelefono,sIdProfe);
+            autoescuela.altaProfesor(oProfesor);
+        }else{
+            if(oCapa.id=="capaModificarProfesor"){
+                var sIdProfe=autoescuela.buscaProfesor(sDni).id;
+                var oProfesor=new Profesor(sApellidos,sDireccion,sDni,sEmail,sNombre,sTelefono,sIdProfe);
+                autoescuela.modificaProfesor(oProfesor);
+            }else{
+                if(oCapa.id="altaCliente"){
+                    var sIdCliente=iNRegCliente+"C";
+                    iNRegCliente++;
+                    var oCliente=new Cliente(sApellidos,sDireccion,sDni,sEmail,sNombre,sTelefono,sIdCliente);
+                    autoescuela.altaCliente(oCliente);
+                }else{
+                    if(oCapa.id="modificarCliente"){
+                        var sIdCliente=autoescuela.buscaCliente(sDni).numeroRegistro;
+                        var oCliente=new Cliente(sApellidos,sDireccion,sDni,sEmail,sNombre,sTelefono,sIdCliente);
+                        autoescuela.modificaCliente(oCliente);
+                    }
+                }
+            }
+        }
+
     }
 
     return bValido;
@@ -739,6 +774,14 @@ function validarVehiculo(oCapa){
     if(bValido == false){
         //Mostrar errores
         alert(sErrores);
+    }else{
+        var oVehiculo=new Vehiculo(sMatricula,sMarca,sModelo,sTipo);
+
+        if(oCapa.id="altaVehiculo"){
+            autoescuela.altaVehiculo(oVehiculo);
+        }else{
+            autoescuela.modificaVehiculo(oVehiculo);
+        }
     }
 
     return bValido;
@@ -881,6 +924,18 @@ function validarClase(){
     if(bValido == false){
         //Mostrar errores
         alert(sErrores);
+    }else{
+        if(sRadioTipo=="practica"){
+            var oClaseP=new Practica(sDuracion,sFecha,sHora,sTarifa);
+            autoescuela.altaClase(oClaseP);
+
+
+        }else{
+            var oClaseT=new Teorica(sDuracion,sFecha,sHora,sAforo);
+            autoescuela.altaClase(oClaseT);
+
+
+        }
     }
 
     return bValido;
@@ -1125,6 +1180,14 @@ function validarMatricula(oCapa){
     if(bValido == false){
         //Mostrar errores
         alert(sErrores);
+    }else{
+        var oMatricula=new Matricula(sAsistenciasExamen,sCantidadAbonada,sExamenPracticoAprob,sExamenTeoricoAprob,sFecha,sIdentificador,sNPracticas,sPrecio,sTipo);
+
+        if(oCapa.id="altaMatricula"){
+            autoescuela.altaMatricula(oMatricula);
+        }else{
+            autoescuela.modificaMatricula(oMatricula);
+        }
     }
 
     return bValido;
@@ -1395,7 +1458,6 @@ function cargarDatosIniciales(){
         var sNumeroRegistro=iNRegCliente+"C";
 
         var oCliente=new Cliente(sApellidos,sDireccion,sDni,sEmail,sNombre,iTelefono,sNumeroRegistro);
-
         autoescuela.altaCliente(oCliente);
 
         iNRegCliente++;
@@ -1698,12 +1760,87 @@ function tablaMatriculas(){
     }
     return oTabla;
 }
+//------------------------funciones de insertar
+function insertaProfesor(){
 
+    var oCapa=document.getElementById("altaProfesor");
+    var bValido=validarPersona(oCapa);
+    if(bValido){
+        alert("Profesor agregado");
+        limpiarCampos(oCapa);
+    }
+}
+function modificarProfesor(){//arreglar las validaciones
+    var oCapa=document.getElementById("capaModificarProfesor");
+    var bValido=validarPersona(oCapa);
+    if(bValido){
+        alert("Profesor modificado");
+        limpiarCampos(oCapa);
+    }
+}
+function insertaCliente(){
+
+    var oCapa=document.getElementById("altaCliente");
+    var bValido=validarPersona(oCapa);
+    if(bValido){
+        alert("Cliente agregado");
+        limpiarCampos(oCapa);
+    }
+}
+function modificarCliente(){
+
+    var oCapa=document.getElementById("modificarCliente");
+    var bValido=validarPersona(oCapa);
+    if(bValido){
+        alert("Cliente modificado");
+        limpiarCampos(oCapa);
+    }
+}
+function insertaVehiculo(){
+    var oCapa=document.getElementById("altaVehiculo");
+    var bValido=validarVehiculo(oCapa);
+    if(bValido){
+        alert("Vehiculo agregado");
+        limpiarCampos(oCapa);
+    }
+}
+function modificarVehiculo(){
+    var oCapa=document.getElementById("modificarVehiculo");
+    var bValido=validarVehiculo(oCapa);
+    if(bValido){
+        alert("Vehiculo modificado");
+        limpiarCampos(oCapa);
+    }
+}
+function insertaClase(){
+    var oCapa=document.getElementById("altaClase");
+    var bValido=validarClase(oCapa);
+    if(bValido){
+        alert("Clase agregada");
+        limpiarCampos(oCapa);
+    }
+}
+function insertaMatricula(){
+    var oCapa=document.getElementById("altaMatricula");
+    var bValido=validarMatricula(oCapa);
+    if(bValido){
+        alert("Matricula agregada");
+        limpiarCampos(oCapa);
+    }
+}
+function modificarMatricula(){
+    var oCapa=document.getElementById("capaFormularioModificarMatricula");
+    var bValido=validarMatricula(oCapa);
+    if(bValido){
+        alert("Matricula modificada");
+        limpiarCampos(oCapa);
+    }
+}
 
 ///-------------------objeto autoescuela
 
 var autoescuela;
 
-var iIdProfesor=1; // iIdProfesor+"P";
-var iNRegCliente=1; // iNRegCliente+"C";
+var iIdProfesor=3; // iIdProfesor+"P";
+var iNRegCliente=3; // iNRegCliente+"C";
 
