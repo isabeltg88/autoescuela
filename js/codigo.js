@@ -359,7 +359,7 @@ function cargarSelectModificarProfesor(){
 
         var oOption= document.createElement("OPTION");
         oOption.value=oProfesor.dni;
-        var oTexto= document.createTextNode(oProfesor.dni+" -"+oProfesor.nombre);
+        var oTexto= document.createTextNode(oProfesor.dni+" - "+oProfesor.nombre);
         oOption.appendChild(oTexto);
         oSelect.appendChild(oOption);
 
@@ -385,7 +385,7 @@ function cargarSelectModificarCliente(){
 
         var oOption= document.createElement("OPTION");
         oOption.value=oCliente.dni;
-        var oTexto= document.createTextNode(oCliente.dni+" -"+oCliente.nombre);
+        var oTexto= document.createTextNode(oCliente.dni+" - "+oCliente.nombre);
         oOption.appendChild(oTexto);
         oSelect.appendChild(oOption);
 
@@ -450,6 +450,7 @@ function validarPersona(oCapa){
     var bValido = true;
     var sErrores = "";  //se almacenan aqui todos los errores
     var oInputs=oCapa.querySelectorAll("input[type=text]");
+    var sCapaId = oCapa.id;
 
     //Validaciones
 
@@ -465,7 +466,7 @@ function validarPersona(oCapa){
     //Campo corregido con trim
     oInputs[0].value=oInputs[0].value.trim();
 
-    var oExpReg = /^[\w\s]{3,30}$/;
+    var oExpReg = /^[a-zA-Z\s\u00f1\u00d1]{3,30}$/;
 
     if(oExpReg.test(sNombre) == false){
         if(bValido){  //Si es el primero en fallar,coge el foco
@@ -489,7 +490,7 @@ function validarPersona(oCapa){
     //Campo corregido con trim
     oInputs[1].value=oInputs[1].value.trim();
 
-    var oExpReg2 = /^[\w\s]{3,50}$/;
+    var oExpReg2 = /^[a-zA-Z\s\u00f1\u00d1]{3,50}$/;
 
     if(oExpReg2.test(sApellidos) == false){
         if(bValido){  //Si es el primero en fallar,coge el foco
@@ -508,41 +509,46 @@ function validarPersona(oCapa){
     }
 
 
-    //Campo dni
-    var sDni = oInputs[2].value.trim(); //sin espacios por delante ni por detras
-    //Campo corregido con trim
-    oInputs[2].value=oInputs[2].value.trim();
 
-    var oExpReg3 = /^(X(-|\.)?0?\d{7}(-|\.)?[A-Z]|[A-Z](-|\.)?\d{7}(-|\.)? [0-9A-Z]|\d{8}(-|\.)?[A-Z])$/;
+    if(sCapaId!="capaModificarProfesor" && sCapaId!="modificarCliente"){
+        //Campo dni
+        var sDni = oInputs[2].value.trim(); //sin espacios por delante ni por detras
+        //Campo corregido con trim
+        oInputs[2].value=oInputs[2].value.trim();
 
-    if(oExpReg3.test(sDni) == false){
-        if(bValido){  //Si es el primero en fallar,coge el foco
-            bValido = false;
-            //Este camo obtiene el foco
-            oInputs[2].focus();
+        var oExpReg3 = /^(X(-|\.)?0?\d{7}(-|\.)?[A-Z]|[A-Z](-|\.)?\d{7}(-|\.)? [0-9A-Z]|\d{8}(-|\.)?[A-Z])$/;
+
+        if(oExpReg3.test(sDni) == false){
+            if(bValido){  //Si es el primero en fallar,coge el foco
+                bValido = false;
+                //Este camo obtiene el foco
+                oInputs[2].focus();
+            }
+
+            sErrores += "DNI incorrectos\n";
+
+            //Marcar error
+            oInputs[2].classList.add("error");
+        }else if(autoescuela.buscaPersona(sDni)){
+            if(bValido){  //Si es el primero en fallar,coge el foco
+                bValido = false;
+                //Este camo obtiene el foco
+                oInputs[2].focus();
+            }
+
+            sErrores += "Persona ya existe\n";
+
+            //Marcar error
+            oInputs[2].classList.add("error");
+        }else{
+            //Desmarcar el error
+            oInputs[2].classList.remove("error");
         }
 
-        sErrores += "DNI incorrectos\n";
-
-        //Marcar error
-        oInputs[2].classList.add("error");
-    }else if(autoescuela.buscaPersona(sDni)){
-        if(bValido){  //Si es el primero en fallar,coge el foco
-            bValido = false;
-            //Este camo obtiene el foco
-            oInputs[2].focus();
-        }
-
-        sErrores += "Persona ya existe\n";
-
-        //Marcar error
-        oInputs[2].classList.add("error");
     }else{
-        //Desmarcar el error
-        oInputs[2].classList.remove("error");
+        //Campo dni
+        var sDni = oInputs[2].value;
     }
-
-
 
     //Campo email
     var sEmail = oInputs[3].value.trim(); //sin espacios por delante ni por detras
@@ -573,7 +579,7 @@ function validarPersona(oCapa){
     //Campo corregido con trim
     oInputs[4].value=oInputs[4].value.trim();
 
-    var oExpReg5 = /^[\w\s]{3,60}$/;
+    var oExpReg5 = /^[\w\d\s\u00f1\u00d1]{3,60}$/;
 
     if(oExpReg5.test(sDireccion) == false){
         if(bValido){  //Si es el primero en fallar,coge el foco
@@ -633,13 +639,13 @@ function validarPersona(oCapa){
                 var oProfesor=new Profesor(sApellidos,sDireccion,sDni,sEmail,sNombre,sTelefono,sIdProfe);
                 autoescuela.modificaProfesor(oProfesor);
             }else{
-                if(oCapa.id="altaCliente"){
+                if(oCapa.id=="altaCliente"){
                     var sIdCliente=iNRegCliente+"C";
                     iNRegCliente++;
                     var oCliente=new Cliente(sApellidos,sDireccion,sDni,sEmail,sNombre,sTelefono,sIdCliente);
                     autoescuela.altaCliente(oCliente);
                 }else{
-                    if(oCapa.id="modificarCliente"){
+                    if(oCapa.id=="modificarCliente"){
                         var sIdCliente=autoescuela.buscaCliente(sDni).numeroRegistro;
                         var oCliente=new Cliente(sApellidos,sDireccion,sDni,sEmail,sNombre,sTelefono,sIdCliente);
                         autoescuela.modificaCliente(oCliente);
@@ -663,50 +669,58 @@ function validarVehiculo(oCapa){
     //0-> matricula
     //1-> marca
     //2-> modelo
-    var oSelectTipo=oCapa.querySelector("select");
-
-
-    //Campo matricula
-    var sMatricula = oInputs[0].value.trim(); //sin espacios por delante ni por detras
-    //Campo corregido con trim
-    oInputs[0].value=oInputs[0].value.trim();
-
-    var oExpReg = /^\d{4}[a-zA-Z]{3}$/;
-
-    if(oExpReg.test(sMatricula) == false){
-        if(bValido){  //Si es el primero en fallar,coge el foco
-            bValido = false;
-            //Este camo obtiene el foco
-            oInputs[0].focus();
-        }
-
-        sErrores += "Matricula incorrecta\n";
-
-        //Marcar error
-        oInputs[0].classList.add("error");
-    }else if(autoescuela.buscaVehiculo(sMatricula)!=null){
-        if(bValido){  //Si es el primero en fallar,coge el foco
-            bValido = false;
-            //Este camo obtiene el foco
-            oInputs[0].focus();
-        }
-
-        sErrores += "El vehiculo ya existe\n";
-
-        //Marcar error
-        oInputs[0].classList.add("error");
-    }else{
-        //Desmarcar el error
-        oInputs[0].classList.remove("error");
+    if(oCapa.id=="altaVehiculo"){
+        var oSelectTipo = oCapa.querySelector("select");
+    }else {
+        var oSelectTipo = oCapa.querySelectorAll("select")[1];
     }
 
+
+    if(oCapa.id=="altaVehiculo") {
+        //Campo matricula
+        var sMatricula = oInputs[0].value.trim(); //sin espacios por delante ni por detras
+        //Campo corregido con trim
+        oInputs[0].value = oInputs[0].value.trim();
+
+        var oExpReg = /^\d{4}[a-zA-Z]{3}$/;
+
+        if (oExpReg.test(sMatricula) == false) {
+            if (bValido) {  //Si es el primero en fallar,coge el foco
+                bValido = false;
+                //Este camo obtiene el foco
+                oInputs[0].focus();
+            }
+
+            sErrores += "Matricula incorrecta\n";
+
+            //Marcar error
+            oInputs[0].classList.add("error");
+        } else if (autoescuela.buscaVehiculo(sMatricula) != null) {
+            if (bValido) {  //Si es el primero en fallar,coge el foco
+                bValido = false;
+                //Este camo obtiene el foco
+                oInputs[0].focus();
+            }
+
+            sErrores += "El vehiculo ya existe\n";
+
+            //Marcar error
+            oInputs[0].classList.add("error");
+        } else {
+            //Desmarcar el error
+            oInputs[0].classList.remove("error");
+        }
+    }else{
+        //Campo matricula
+        var sMatricula = oInputs[0].value;
+    }
 
     //Campo marca
     var sMarca = oInputs[1].value.trim(); //sin espacios por delante ni por detras
     //Campo corregido con trim
     oInputs[1].value=oInputs[1].value.trim();
 
-    var oExpReg2 = /^[\w\s]{3,20}$/;
+    var oExpReg2 = /^[a-zA-Z\s\u00f1\u00d1]{3,20}$/;
 
     if(oExpReg2.test(sMarca) == false){
         if(bValido){  //Si es el primero en fallar,coge el foco
@@ -730,7 +744,7 @@ function validarVehiculo(oCapa){
     //Campo corregido con trim
     oInputs[2].value=oInputs[2].value.trim();
 
-    var oExpReg3 = /^[\w\s]{3,25}$/;
+    var oExpReg3 = /^[\w\d\s\u00f1\u00d1]{3,25}$/;
 
     if(oExpReg3.test(sModelo) == false){
         if(bValido){  //Si es el primero en fallar,coge el foco
@@ -777,7 +791,7 @@ function validarVehiculo(oCapa){
     }else{
         var oVehiculo=new Vehiculo(sMatricula,sMarca,sModelo,sTipo);
 
-        if(oCapa.id="altaVehiculo"){
+        if(oCapa.id=="altaVehiculo"){
             autoescuela.altaVehiculo(oVehiculo);
         }else{
             autoescuela.modificaVehiculo(oVehiculo);
@@ -808,7 +822,7 @@ function validarClase(){
     oInputs[0].value=oInputs[0].value.trim();
 
 
-    if(comprobarFloat(sDuracion)){
+    if(!comprobarFloat(sDuracion)){
         if(bValido){  //Si es el primero en fallar,coge el foco
             bValido = false;
             //Este camo obtiene el foco
@@ -880,7 +894,7 @@ function validarClase(){
         //Campo corregido con trim
         oInputs[3].value=oInputs[3].value.trim();
 
-        if(comprobarFloat(sTarifa) ){
+        if(!comprobarFloat(sTarifa) ){
             if(bValido){  //Si es el primero en fallar,coge el foco
                 bValido = false;
                 //Este camo obtiene el foco
@@ -903,7 +917,7 @@ function validarClase(){
 
         var oExpReg3 = /^\d{1,3}$/;
 
-        if(oExpReg3.test(sAforo)){
+        if(!oExpReg3.test(sAforo)){
             if(bValido){  //Si es el primero en fallar,coge el foco
                 bValido = false;
                 //Este camo obtiene el foco
@@ -925,13 +939,14 @@ function validarClase(){
         //Mostrar errores
         alert(sErrores);
     }else{
+        var dFecha=fechaStringADate(sFecha);
         if(sRadioTipo=="practica"){
-            var oClaseP=new Practica(sDuracion,sFecha,sHora,sTarifa);
+            var oClaseP=new Practica(sDuracion,dFecha,sHora,sTarifa);
             autoescuela.altaClase(oClaseP);
 
 
         }else{
-            var oClaseT=new Teorica(sDuracion,sFecha,sHora,sAforo);
+            var oClaseT=new Teorica(sDuracion,dFecha,sHora,sAforo);
             autoescuela.altaClase(oClaseT);
 
 
@@ -953,7 +968,7 @@ function validarMatricula(oCapa){
     //3-> N practicas                 int
     //4-> identificador               string  333333aaaa
     //5-> precio                      float
-    var oSelects=oCapa.querySelector("select");
+    var oSelects=oCapa.querySelectorAll("select");
     //0-> Examen practico aprobado    "si","no" / "0"  fallo
     //1-> Examen teorico aprobado     "si","no" / "0"  fallo
     //2-> Tipo                        string
@@ -966,7 +981,7 @@ function validarMatricula(oCapa){
 
     var oExpReg = /^\d{1,3}$/;
 
-    if(oExpReg.test(sAsistenciasExamen)){
+    if(!oExpReg.test(sAsistenciasExamen)){
         if(bValido){  //Si es el primero en fallar,coge el foco
             bValido = false;
             //Este camo obtiene el foco
@@ -988,7 +1003,7 @@ function validarMatricula(oCapa){
     //Campo corregido con trim
     oInputs[1].value=oInputs[1].value.trim();
 
-    if(comprobarFloat(sCantidadAbonada) ){
+    if(!comprobarFloat(sCantidadAbonada) ){
         if(bValido){  //Si es el primero en fallar,coge el foco
             bValido = false;
             //Este camo obtiene el foco
@@ -1037,7 +1052,7 @@ function validarMatricula(oCapa){
 
     var oExpReg3 = /^\d{1,3}$/;
 
-    if(oExpReg3.test(sNPracticas)){
+    if(!oExpReg3.test(sNPracticas)){
         if(bValido){  //Si es el primero en fallar,coge el foco
             bValido = false;
             //Este camo obtiene el foco
@@ -1054,41 +1069,44 @@ function validarMatricula(oCapa){
     }
 
 
+    if(oCapa.id=="altaMatricula") {
+        //Campo identificador
+        var sIdentificador = oInputs[4].value.trim(); //sin espacios por delante ni por detras
+        //Campo corregido con trim
+        oInputs[4].value=oInputs[4].value.trim();
 
-    //Campo identificador
-    var sIdentificador = oInputs[4].value.trim(); //sin espacios por delante ni por detras
-    //Campo corregido con trim
-    oInputs[4].value=oInputs[4].value.trim();
+        var oExpReg4 = /^\d{1,6}[a-zA-Z]{1,4}$/;
 
-    var oExpReg4 = /^\d{1,6}[a-zA-Z]{1,4}$/;
 
-    if(oExpReg4.test(sIdentificador) == false){
-        if(bValido){  //Si es el primero en fallar,coge el foco
-            bValido = false;
-            //Este camo obtiene el foco
-            oInputs[4].focus();
+        if (oExpReg4.test(sIdentificador) == false) {
+            if (bValido) {  //Si es el primero en fallar,coge el foco
+                bValido = false;
+                //Este camo obtiene el foco
+                oInputs[4].focus();
+            }
+
+            sErrores += "Identificador incorrecto\n";
+
+            //Marcar error
+            oInputs[4].classList.add("error");
+        } else if (autoescuela.buscaMatricula(sIdentificador) != null) {
+            if (bValido) {  //Si es el primero en fallar,coge el foco
+                bValido = false;
+                //Este camo obtiene el foco
+                oInputs[4].focus();
+            }
+
+            sErrores += "La matricula ya existe\n";
+
+            //Marcar error
+            oInputs[4].classList.add("error");
+        } else {
+            //Desmarcar el error
+            oInputs[4].classList.remove("error");
         }
-
-        sErrores += "Identificador incorrecto\n";
-
-        //Marcar error
-        oInputs[4].classList.add("error");
-    }else if(autoescuela.buscaMatricula(sIdentificador)!=null){
-        if(bValido){  //Si es el primero en fallar,coge el foco
-            bValido = false;
-            //Este camo obtiene el foco
-            oInputs[4].focus();
-        }
-
-        sErrores += "La matricula ya existe\n";
-
-        //Marcar error
-        oInputs[4].classList.add("error");
     }else{
-        //Desmarcar el error
-        oInputs[4].classList.remove("error");
+        var sIdentificador = oInputs[4].value;
     }
-
 
 
     //Campo precio
@@ -1096,7 +1114,7 @@ function validarMatricula(oCapa){
     //Campo corregido con trim
     oInputs[5].value=oInputs[5].value.trim();
 
-    if(comprobarFloat(sPrecio) ){
+    if(!comprobarFloat(sPrecio) ){
         if(bValido){  //Si es el primero en fallar,coge el foco
             bValido = false;
             //Este camo obtiene el foco
@@ -1181,9 +1199,10 @@ function validarMatricula(oCapa){
         //Mostrar errores
         alert(sErrores);
     }else{
-        var oMatricula=new Matricula(sAsistenciasExamen,sCantidadAbonada,sExamenPracticoAprob,sExamenTeoricoAprob,sFecha,sIdentificador,sNPracticas,sPrecio,sTipo);
+        var dFecha=fechaStringADate(sFecha);
+        var oMatricula=new Matricula(sAsistenciasExamen,sCantidadAbonada,sExamenPracticoAprob,sExamenTeoricoAprob,dFecha,sIdentificador,sNPracticas,sPrecio,sTipo);
 
-        if(oCapa.id="altaMatricula"){
+        if(oCapa.id=="altaMatricula"){
             autoescuela.altaMatricula(oMatricula);
         }else{
             autoescuela.modificaMatricula(oMatricula);
@@ -1371,7 +1390,7 @@ function comprobarFecha(sFecha){ //devuelve true si la fecha es correcta
     var bRes=false;
 
     // "DD/MM/YYYY"
-    var arrayDatos=sFecha.slice("/");
+    var arrayDatos=sFecha.split("/");
 
     var iDia=parseInt(arrayDatos[0]);
     var iMes=parseInt(arrayDatos[1])-1;
@@ -1767,7 +1786,8 @@ function insertaProfesor(){
     var bValido=validarPersona(oCapa);
     if(bValido){
         alert("Profesor agregado");
-        limpiarCampos(oCapa);
+        //limpiarCampos(oCapa);
+        ocultarTodosFormularios();
     }
 }
 function modificarProfesor(){//arreglar las validaciones
@@ -1775,7 +1795,8 @@ function modificarProfesor(){//arreglar las validaciones
     var bValido=validarPersona(oCapa);
     if(bValido){
         alert("Profesor modificado");
-        limpiarCampos(oCapa);
+        //limpiarCampos(oCapa);
+        ocultarTodosFormularios();
     }
 }
 function insertaCliente(){
@@ -1784,7 +1805,8 @@ function insertaCliente(){
     var bValido=validarPersona(oCapa);
     if(bValido){
         alert("Cliente agregado");
-        limpiarCampos(oCapa);
+        //limpiarCampos(oCapa);
+        ocultarTodosFormularios();
     }
 }
 function modificarCliente(){
@@ -1793,7 +1815,8 @@ function modificarCliente(){
     var bValido=validarPersona(oCapa);
     if(bValido){
         alert("Cliente modificado");
-        limpiarCampos(oCapa);
+        //limpiarCampos(oCapa);
+        ocultarTodosFormularios();
     }
 }
 function insertaVehiculo(){
@@ -1801,7 +1824,8 @@ function insertaVehiculo(){
     var bValido=validarVehiculo(oCapa);
     if(bValido){
         alert("Vehiculo agregado");
-        limpiarCampos(oCapa);
+        //limpiarCampos(oCapa);
+        ocultarTodosFormularios();
     }
 }
 function modificarVehiculo(){
@@ -1809,7 +1833,8 @@ function modificarVehiculo(){
     var bValido=validarVehiculo(oCapa);
     if(bValido){
         alert("Vehiculo modificado");
-        limpiarCampos(oCapa);
+        //limpiarCampos(oCapa);
+        ocultarTodosFormularios();
     }
 }
 function insertaClase(){
@@ -1817,7 +1842,8 @@ function insertaClase(){
     var bValido=validarClase(oCapa);
     if(bValido){
         alert("Clase agregada");
-        limpiarCampos(oCapa);
+        //limpiarCampos(oCapa);
+        ocultarTodosFormularios();
     }
 }
 function insertaMatricula(){
@@ -1825,7 +1851,8 @@ function insertaMatricula(){
     var bValido=validarMatricula(oCapa);
     if(bValido){
         alert("Matricula agregada");
-        limpiarCampos(oCapa);
+        //limpiarCampos(oCapa);
+        ocultarTodosFormularios();
     }
 }
 function modificarMatricula(){
@@ -1833,7 +1860,8 @@ function modificarMatricula(){
     var bValido=validarMatricula(oCapa);
     if(bValido){
         alert("Matricula modificada");
-        limpiarCampos(oCapa);
+        //limpiarCampos(oCapa);
+        ocultarTodosFormularios();
     }
 }
 

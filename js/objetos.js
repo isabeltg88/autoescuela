@@ -196,23 +196,23 @@ Cliente.prototype.fila= function () {
      
     var fila = document.createElement("tr");
     var celda = document.createElement("td");
-    var oTexto=document.createTextNode(this.apellidos);
+    var oTexto=document.createTextNode(this.dni);
     celda.appendChild(oTexto);
     fila.appendChild(celda);
     var celda2 = document.createElement("td");
-    var oTexto2=document.createTextNode(this.direccion);
+    var oTexto2=document.createTextNode(this.nombre);
     celda2.appendChild(oTexto2);
     fila.appendChild(celda2);
     var celda3 = document.createElement("td");
-    var oTexto3=document.createTextNode(this.dni);
+    var oTexto3=document.createTextNode(this.apellidos);
     celda3.appendChild(oTexto3);
     fila.appendChild(celda3);
     var celda4 = document.createElement("td");
-    var oTexto4=document.createTextNode(this.email);
+    var oTexto4=document.createTextNode(this.direccion);
     celda4.appendChild(oTexto4);
     fila.appendChild(celda4);
     var celda5 = document.createElement("td");
-    var oTexto5=document.createTextNode(this.nombre);
+    var oTexto5=document.createTextNode(this.email);
     celda5.appendChild(oTexto5);
     fila.appendChild(celda5);
     var celda6 = document.createElement("td");
